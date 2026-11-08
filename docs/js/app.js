@@ -78,7 +78,7 @@ function showFind() {
     <label>1. Your CV (PDF, DOCX or TXT)<input type="file" name="cv" accept=".pdf,.docx,.txt" required></label>
     <div class="grid2">
       <label>2. Job titles, separated by commas<input name="query" placeholder="QA Lead, QA Engineer, Security Expert"></label>
-      <label>Your country (can you apply?)<select name="country" id="ctry"><option>Bangladesh</option></select></label>
+      <label>Your country (can you apply?)<select name="country" id="ctry" required><option value="">Choose your country…</option></select></label>
       <label>Where to look<select name="scope"><option value="both">Local + remote (everything)</option><option value="local">Local jobs in my country</option><option value="remote">Remote jobs (other countries)</option></select></label>
       <label>Minimum match %<input name="min_score" type="number" min="0" max="100" value="20"></label>
       <label>Most jobs to list<input name="limit" type="number" min="10" max="500" value="100"></label>
@@ -90,8 +90,8 @@ function showFind() {
   countriesReady.then((list) => {
     const sel = app.querySelector('#ctry'); if (!sel || !list.length) return;
     let saved = ''; try { saved = localStorage.getItem('jm_country') || ''; } catch (e) { /* storage blocked */ }
-    sel.innerHTML = list.map((c) => `<option value="${esc(c.name)}">${esc(c.name)}</option>`).join('');
-    sel.value = list.some((c) => c.name === saved) ? saved : 'Bangladesh';
+    sel.innerHTML = '<option value="">Choose your country…</option>' + list.map((c) => `<option value="${esc(c.name)}">${esc(c.name)}</option>`).join('');
+    sel.value = list.some((c) => c.name === saved) ? saved : '';
   });
   const f = app.querySelector('#f');
   f.onsubmit = async (e) => {

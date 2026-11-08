@@ -3,7 +3,14 @@
 Status:  Yes | Check | Visa/relocation | No      (always with a short reason)
 It is a screening aid, not a guarantee: 'Check' means read the posting before applying.
 """
+import json
 import re
+from pathlib import Path
+
+try:  # every country and the regions that count as 'ours' (built by tools/build_countries.py)
+    _COUNTRIES = {c["name"].lower(): c["terms"] for c in json.loads((Path(__file__).resolve().parent.parent / "docs" / "countries.json").read_text(encoding="utf-8"))}
+except Exception:
+    _COUNTRIES = {}
 
 # Places a candidate in each country counts as 'ours' (regions that include them)
 PROFILES = {
@@ -41,7 +48,7 @@ def _has(text, term):
 
 def check(job, country="Bangladesh"):
     country = (country or "Bangladesh").strip()
-    ours = PROFILES.get(country.lower(), [country.lower()])
+    ours = PROFILES.get(country.lower()) or _COUNTRIES.get(country.lower()) or [country.lower()]
     loc = (job.get("location") or "").lower()
     desc = (job.get("description") or "").lower()
     text = f"{loc} {desc}"

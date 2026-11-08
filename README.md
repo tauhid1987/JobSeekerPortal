@@ -57,6 +57,26 @@ npm run dev             # emulators; then run the server with the emulator varia
 Default is `127.0.0.1` (this PC only). To let colleagues reach it set `JOBMATCH_HOST=0.0.0.0` and `JOBMATCH_PORT`;
 only signed-in, approved members can use it. Use HTTPS in front of it beyond a trusted office network.
 
+## Job sources
+
+| Source | Kind | Covers | Key needed |
+|---|---|---|---|
+| Remotive | remote feed | worldwide remote | no |
+| RemoteOK | remote feed | worldwide remote | no |
+| We Work Remotely | remote feed (RSS) | worldwide remote | no |
+| Working Nomads | remote feed | worldwide remote | no |
+| Himalayas | remote API | worldwide remote | no |
+| Jobicy | remote API | worldwide remote | no |
+| Arbeitnow | feed | Germany and Europe (on-site and remote) | no |
+| BDJobs | local board | Bangladesh (newest ~50 jobs) | no |
+| Skill.Jobs | local board | Bangladesh | no |
+| Jooble | local, many countries | about 70 countries | `JOOBLE_KEY` (free) |
+| Adzuna | local, 19 countries | UK, US, AU, CA, DE, FR, IN, IT, NL, NZ, PL, SG, ZA, BR, AT, BE, CH, MX, ES | `ADZUNA_ID` + `ADZUNA_KEY` (free) |
+
+LinkedIn is not searched automatically (its terms forbid collecting its jobs). Each results page gives one-click LinkedIn and Google Jobs
+searches for every title, plus local job sites for the chosen country (`docs/countries.json`, built by `tools/build_countries.py`).
+Choose "Local", "Remote" or "Local + remote" per search. Add the keys as environment variables on the host (Render) to switch on Jooble / Adzuna.
+
 ## Put it online (GitHub Pages + a small hosted server)
 GitHub Pages can only show static pages, so JobMatch is split in two:
 

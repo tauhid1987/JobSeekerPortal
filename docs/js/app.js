@@ -78,7 +78,8 @@ function showFind() {
     <label>1. Your CV (PDF, DOCX or TXT)<input type="file" name="cv" accept=".pdf,.docx,.txt" required></label>
     <div class="grid2">
       <label>2. Job titles, separated by commas<input name="query" placeholder="QA Lead, QA Engineer, Security Expert"></label>
-      <label>Your country (can you apply?)<input name="country" value="Bangladesh"></label>
+      <label>Your country (can you apply?)<select name="country" id="ctry"><option>Bangladesh</option></select></label>
+      <label>Where to look<select name="scope"><option value="both">Local + remote (everything)</option><option value="local">Local jobs in my country</option><option value="remote">Remote jobs (other countries)</option></select></label>
       <label>Minimum match %<input name="min_score" type="number" min="0" max="100" value="20"></label>
       <label>Most jobs to list<input name="limit" type="number" min="10" max="500" value="100"></label>
       <label>Rank by<select name="sort"><option value="match">Best match</option><option value="deadline">Closest deadline first</option></select></label>
@@ -86,6 +87,12 @@ function showFind() {
     </div>
     <label class="row"><input type="checkbox" name="remote"> Remote jobs only</label>
     <button class="full" id="go">Search jobs</button><p id="msg" class="hint"></p></form>`;
+  countriesReady.then((list) => {
+    const sel = app.querySelector('#ctry'); if (!sel || !list.length) return;
+    let saved = ''; try { saved = localStorage.getItem('jm_country') || ''; } catch (e) { /* storage blocked */ }
+    sel.innerHTML = list.map((c) => `<option value="${esc(c.name)}">${esc(c.name)}</option>`).join('');
+    sel.value = list.some((c) => c.name === saved) ? saved : 'Bangladesh';
+  });
   const f = app.querySelector('#f');
   f.onsubmit = async (e) => {
     e.preventDefault();
@@ -98,6 +105,7 @@ function showFind() {
       const d = await r.json();
       if (!r.ok) throw new Error(d.error || 'Search failed');
       last = d;
+      try { localStorage.setItem('jm_country', d.country); } catch (e) { /* storage blocked */ }
       view = 'find';
       render();
     } catch (err) {
@@ -106,6 +114,23 @@ function showFind() {
       f.querySelector('#go').disabled = false;
     }
   };
+}
+
+let countryList = [];
+const countriesReady = fetch('countries.json').then((r) => r.json()).then((l) => (countryList = l)).catch(() => []);
+
+function moreSearches(d) {
+  const c = countryList.find((x) => x.name === d.country);
+  const enc = encodeURIComponent;
+  const titles = (d.queries && d.queries.length ? d.queries : ['']).slice(0, 4);
+  const links = titles.map((t) => `<li><b>${esc(t || 'Jobs')}</b>:
+    <a href="https://www.linkedin.com/jobs/search/?keywords=${enc(t)}&location=${enc(d.country)}" target="_blank" rel="noopener noreferrer">LinkedIn in ${esc(d.country)}</a> ·
+    <a href="https://www.linkedin.com/jobs/search/?keywords=${enc(t)}&f_WT=2" target="_blank" rel="noopener noreferrer">LinkedIn remote</a> ·
+    <a href="https://www.google.com/search?q=${enc(`${t} jobs in ${d.country}`)}&ibp=htl;jobs" target="_blank" rel="noopener noreferrer">Google Jobs</a></li>`).join('');
+  const portals = c && c.portals.length ? `<p class="mute small">Local job sites in ${esc(d.country)}: ${c.portals.map((p) => `<a href="${esc(p.url)}" target="_blank" rel="noopener noreferrer">${esc(p.name)}</a>`).join(' · ')}</p>` : '';
+  return `<div class="card"><h3>Also look here</h3>
+    <p class="mute small">LinkedIn does not allow automatic collection of its jobs, so open its own results from here (log in there to apply).</p>
+    <ul class="mute">${links}</ul>${portals}</div>`;
 }
 
 const eligClass = { Yes: 'yes', Check: 'check', 'Visa/relocation': 'visa', No: 'no' };
@@ -127,6 +152,7 @@ function showResults() {
       <p class="mute small">Skills read from your CV: ${esc(d.skills.join(', ') || 'none')}</p>
       <p class="mute small">${d.log.map(esc).join(' · ')}</p>
       <div class="row"><button id="xl">Download Excel</button><button class="ghost" id="again">New search</button></div></div>
+    ${moreSearches(d)}
     <div class="card"><div class="table"><table class="jobs"><thead><tr><th>#</th><th>Job</th><th>Match</th><th>Can apply?</th><th>Salary</th><th>Deadline</th><th>Track</th></tr></thead><tbody>
     ${d.jobs.map((j, i) => {
     const a = apps[j.key];

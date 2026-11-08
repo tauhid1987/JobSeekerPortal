@@ -24,29 +24,44 @@ def fix_text(s):
     return s
 
 
-def search_all(queries, country="Bangladesh", log=print):
-    """Global feeds run for everyone; country sources (BDJobs, Skill.Jobs...) only for their country."""
-    from . import remotive, remoteok, arbeitnow, bdjobs, skilljobs, jooble
-    jobs = []
+def search_all(queries, country="Bangladesh", log=print, scope="both"):
+    """scope: 'local' = job boards of the user's country, 'remote' = remote jobs open to other countries, 'both'.
+    Sources run in parallel; one that fails is skipped and logged."""
+    from concurrent.futures import ThreadPoolExecutor
+    from . import remotive, remoteok, arbeitnow, jobicy, himalayas, weworkremotely, workingnomads, bdjobs, skilljobs, jooble, adzuna
     queries = queries or [""]
+    tasks = []  # (label, function)
+    if scope in ("remote", "both"):
+        for q in queries:
+            tasks.append((f"Remotive '{q}'", lambda q=q: remotive.search(q)))
+            tasks.append((f"Himalayas '{q}'", lambda q=q: himalayas.search(q)))
+            tasks.append((f"Jobicy '{q}'", lambda q=q: jobicy.search(q)))
+        tasks += [("RemoteOK", lambda: remoteok.search("")), ("Arbeitnow", lambda: arbeitnow.search("")),
+                  ("We Work Remotely", lambda: weworkremotely.search("")), ("Working Nomads", lambda: workingnomads.search(""))]
+    if scope in ("local", "both"):
+        for mod in (bdjobs, skilljobs):
+            if country.lower() in mod.COUNTRIES:
+                tasks.append((mod.NAME, lambda mod=mod: mod.search(queries[0])))
+        for q in queries:
+            tasks.append((f"Jooble '{q}'", lambda q=q: jooble.search(q, country)))
+            tasks.append((f"Adzuna '{q}'", lambda q=q: adzuna.search(q, country)))
 
-    def run(label, fn):
+    def run(t):
+        label, fn = t
         try:
             got = fn()
-            log(f"{label}: {len(got)} jobs")
-            jobs.extend(got)
+            return label, got, None
         except Exception as e:
-            log(f"{label}: skipped ({type(e).__name__}: {str(e)[:80]})")
+            return label, [], f"{type(e).__name__}: {str(e)[:80]}"
 
-    for q in queries:
-        run(f"Remotive '{q}'", lambda q=q: remotive.search(q))
-    run("RemoteOK", lambda: remoteok.search(""))
-    run("Arbeitnow", lambda: arbeitnow.search(""))
-    for mod in (bdjobs, skilljobs):
-        if country.lower() in mod.COUNTRIES:
-            run(mod.NAME, lambda: mod.search(queries[0]))
-    for q in queries:
-        run(f"Jooble '{q}'", lambda q=q: jooble.search(q, country))
+    jobs = []
+    with ThreadPoolExecutor(6) as ex:
+        for label, got, err in ex.map(run, tasks):
+            if err:
+                log(f"{label}: skipped ({err})")
+            elif got or not label.startswith("Adzuna"):
+                log(f"{label}: {len(got)} jobs")
+            jobs.extend(got)
     for j in jobs:
         for k in ("title", "company", "location", "salary"):
             j[k] = fix_text(j.get(k))

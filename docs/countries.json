@@ -1,0 +1,2359 @@
+[
+{
+"name": "Afghanistan",
+"region": "south asia",
+"terms": [
+"afghanistan",
+"south asia",
+"asia",
+"apac",
+"asia pacific",
+"asia-pacific"
+],
+"portals": []
+},
+{
+"name": "Albania",
+"region": "eastern europe",
+"terms": [
+"albania",
+"eastern europe",
+"cee",
+"europe",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Algeria",
+"region": "north africa",
+"terms": [
+"algeria",
+"north africa",
+"mena",
+"africa",
+"emea",
+"middle east"
+],
+"portals": []
+},
+{
+"name": "Angola",
+"region": "sub-saharan africa",
+"terms": [
+"angola",
+"sub-saharan africa",
+"africa",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Argentina",
+"region": "south america",
+"terms": [
+"argentina",
+"south america",
+"latam",
+"latin america",
+"americas"
+],
+"portals": [
+{
+"name": "Zonajobs",
+"url": "https://www.zonajobs.com.ar"
+},
+{
+"name": "Computrabajo",
+"url": "https://www.computrabajo.com.ar"
+}
+]
+},
+{
+"name": "Armenia",
+"region": "eastern europe",
+"terms": [
+"armenia",
+"eastern europe",
+"cee",
+"europe",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Australia",
+"region": "oceania",
+"terms": [
+"australia",
+"oceania",
+"apac",
+"asia pacific",
+"asia-pacific",
+"anz"
+],
+"portals": [
+{
+"name": "SEEK",
+"url": "https://www.seek.com.au"
+},
+{
+"name": "Jora",
+"url": "https://au.jora.com"
+}
+]
+},
+{
+"name": "Austria",
+"region": "western europe",
+"terms": [
+"austria",
+"western europe",
+"europe",
+"emea",
+"eu"
+],
+"portals": [
+{
+"name": "Karriere.at",
+"url": "https://www.karriere.at"
+},
+{
+"name": "AMS eJob-Room",
+"url": "https://jobroom.ams.or.at"
+}
+]
+},
+{
+"name": "Azerbaijan",
+"region": "eastern europe",
+"terms": [
+"azerbaijan",
+"eastern europe",
+"cee",
+"europe",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Bahamas",
+"region": "central america & caribbean",
+"terms": [
+"bahamas",
+"latam",
+"latin america",
+"americas"
+],
+"portals": []
+},
+{
+"name": "Bahrain",
+"region": "middle east",
+"terms": [
+"bahrain",
+"middle east",
+"mena",
+"emea",
+"gulf",
+"gcc",
+"asia"
+],
+"portals": []
+},
+{
+"name": "Bangladesh",
+"region": "south asia",
+"terms": [
+"bangladesh",
+"south asia",
+"asia",
+"apac",
+"asia pacific",
+"asia-pacific"
+],
+"portals": [
+{
+"name": "BDJobs",
+"url": "https://bdjobs.com"
+},
+{
+"name": "Skill.Jobs",
+"url": "https://skill.jobs"
+},
+{
+"name": "Chakri.com",
+"url": "https://www.chakri.com"
+}
+]
+},
+{
+"name": "Belarus",
+"region": "eastern europe",
+"terms": [
+"belarus",
+"eastern europe",
+"cee",
+"europe",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Belgium",
+"region": "western europe",
+"terms": [
+"belgium",
+"western europe",
+"europe",
+"emea",
+"eu"
+],
+"portals": [
+{
+"name": "VDAB",
+"url": "https://www.vdab.be"
+},
+{
+"name": "Le Forem",
+"url": "https://www.leforem.be"
+}
+]
+},
+{
+"name": "Bhutan",
+"region": "south asia",
+"terms": [
+"bhutan",
+"south asia",
+"asia",
+"apac",
+"asia pacific",
+"asia-pacific"
+],
+"portals": []
+},
+{
+"name": "Bolivia",
+"region": "south america",
+"terms": [
+"bolivia",
+"south america",
+"latam",
+"latin america",
+"americas"
+],
+"portals": []
+},
+{
+"name": "Bosnia and Herzegovina",
+"region": "eastern europe",
+"terms": [
+"bosnia and herzegovina",
+"eastern europe",
+"cee",
+"europe",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Botswana",
+"region": "sub-saharan africa",
+"terms": [
+"botswana",
+"sub-saharan africa",
+"africa",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Brazil",
+"region": "south america",
+"terms": [
+"brazil",
+"south america",
+"latam",
+"latin america",
+"americas"
+],
+"portals": [
+{
+"name": "Vagas.com.br",
+"url": "https://www.vagas.com.br"
+},
+{
+"name": "Catho",
+"url": "https://www.catho.com.br"
+},
+{
+"name": "Gupy",
+"url": "https://portal.gupy.io"
+}
+]
+},
+{
+"name": "Brunei",
+"region": "southeast asia",
+"terms": [
+"brunei",
+"southeast asia",
+"south east asia",
+"asia",
+"apac",
+"asia pacific",
+"asia-pacific",
+"asean"
+],
+"portals": []
+},
+{
+"name": "Bulgaria",
+"region": "eastern europe",
+"terms": [
+"bulgaria",
+"eastern europe",
+"cee",
+"europe",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Cambodia",
+"region": "southeast asia",
+"terms": [
+"cambodia",
+"southeast asia",
+"south east asia",
+"asia",
+"apac",
+"asia pacific",
+"asia-pacific",
+"asean"
+],
+"portals": []
+},
+{
+"name": "Cameroon",
+"region": "sub-saharan africa",
+"terms": [
+"cameroon",
+"sub-saharan africa",
+"africa",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Canada",
+"region": "north america",
+"terms": [
+"canada",
+"north america",
+"americas"
+],
+"portals": [
+{
+"name": "Job Bank",
+"url": "https://www.jobbank.gc.ca"
+},
+{
+"name": "Workopolis",
+"url": "https://www.workopolis.com"
+}
+]
+},
+{
+"name": "Chad",
+"region": "sub-saharan africa",
+"terms": [
+"chad",
+"sub-saharan africa",
+"africa",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Chile",
+"region": "south america",
+"terms": [
+"chile",
+"south america",
+"latam",
+"latin america",
+"americas"
+],
+"portals": [
+{
+"name": "Trabajando.com",
+"url": "https://www.trabajando.cl"
+},
+{
+"name": "Laborum",
+"url": "https://www.laborum.cl"
+}
+]
+},
+{
+"name": "China",
+"region": "east asia",
+"terms": [
+"china",
+"east asia",
+"asia",
+"apac",
+"asia pacific",
+"asia-pacific"
+],
+"portals": []
+},
+{
+"name": "Colombia",
+"region": "south america",
+"terms": [
+"colombia",
+"south america",
+"latam",
+"latin america",
+"americas"
+],
+"portals": [
+{
+"name": "Computrabajo",
+"url": "https://www.computrabajo.com.co"
+},
+{
+"name": "elempleo",
+"url": "https://www.elempleo.com"
+}
+]
+},
+{
+"name": "Costa Rica",
+"region": "central america & caribbean",
+"terms": [
+"costa rica",
+"latam",
+"latin america",
+"americas"
+],
+"portals": []
+},
+{
+"name": "Croatia",
+"region": "eastern europe",
+"terms": [
+"croatia",
+"eastern europe",
+"cee",
+"europe",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Cuba",
+"region": "central america & caribbean",
+"terms": [
+"cuba",
+"latam",
+"latin america",
+"americas"
+],
+"portals": []
+},
+{
+"name": "Cyprus",
+"region": "western europe",
+"terms": [
+"cyprus",
+"western europe",
+"europe",
+"emea",
+"eu"
+],
+"portals": []
+},
+{
+"name": "Czechia",
+"region": "eastern europe",
+"terms": [
+"czechia",
+"czech republic",
+"eastern europe",
+"cee",
+"europe",
+"emea"
+],
+"portals": [
+{
+"name": "Jobs.cz",
+"url": "https://www.jobs.cz"
+},
+{
+"name": "Prace.cz",
+"url": "https://www.prace.cz"
+}
+]
+},
+{
+"name": "DR Congo",
+"region": "sub-saharan africa",
+"terms": [
+"dr congo",
+"congo",
+"sub-saharan africa",
+"africa",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Denmark",
+"region": "northern europe",
+"terms": [
+"denmark",
+"northern europe",
+"nordics",
+"europe",
+"emea",
+"eu"
+],
+"portals": [
+{
+"name": "Jobindex",
+"url": "https://www.jobindex.dk"
+},
+{
+"name": "Jobnet",
+"url": "https://job.jobnet.dk"
+}
+]
+},
+{
+"name": "Dominican Republic",
+"region": "central america & caribbean",
+"terms": [
+"dominican republic",
+"latam",
+"latin america",
+"americas"
+],
+"portals": []
+},
+{
+"name": "Ecuador",
+"region": "south america",
+"terms": [
+"ecuador",
+"south america",
+"latam",
+"latin america",
+"americas"
+],
+"portals": []
+},
+{
+"name": "Egypt",
+"region": "north africa",
+"terms": [
+"egypt",
+"north africa",
+"mena",
+"africa",
+"emea",
+"middle east"
+],
+"portals": [
+{
+"name": "Wuzzuf",
+"url": "https://wuzzuf.net"
+},
+{
+"name": "Bayt",
+"url": "https://www.bayt.com"
+}
+]
+},
+{
+"name": "El Salvador",
+"region": "central america & caribbean",
+"terms": [
+"el salvador",
+"latam",
+"latin america",
+"americas"
+],
+"portals": []
+},
+{
+"name": "Estonia",
+"region": "northern europe",
+"terms": [
+"estonia",
+"northern europe",
+"nordics",
+"europe",
+"emea",
+"eu"
+],
+"portals": []
+},
+{
+"name": "Ethiopia",
+"region": "sub-saharan africa",
+"terms": [
+"ethiopia",
+"sub-saharan africa",
+"africa",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Fiji",
+"region": "oceania",
+"terms": [
+"fiji",
+"oceania",
+"apac",
+"asia pacific",
+"asia-pacific",
+"anz"
+],
+"portals": []
+},
+{
+"name": "Finland",
+"region": "northern europe",
+"terms": [
+"finland",
+"northern europe",
+"nordics",
+"europe",
+"emea",
+"eu"
+],
+"portals": [
+{
+"name": "Tyomarkkinatori",
+"url": "https://tyomarkkinatori.fi"
+},
+{
+"name": "Duunitori",
+"url": "https://duunitori.fi"
+}
+]
+},
+{
+"name": "France",
+"region": "western europe",
+"terms": [
+"france",
+"western europe",
+"europe",
+"emea",
+"eu"
+],
+"portals": [
+{
+"name": "Welcome to the Jungle",
+"url": "https://www.welcometothejungle.com"
+},
+{
+"name": "France Travail",
+"url": "https://www.francetravail.fr"
+}
+]
+},
+{
+"name": "Georgia",
+"region": "eastern europe",
+"terms": [
+"georgia",
+"eastern europe",
+"cee",
+"europe",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Germany",
+"region": "western europe",
+"terms": [
+"germany",
+"western europe",
+"europe",
+"emea",
+"eu"
+],
+"portals": [
+{
+"name": "StepStone",
+"url": "https://www.stepstone.de"
+},
+{
+"name": "Xing Jobs",
+"url": "https://www.xing.com/jobs"
+},
+{
+"name": "Arbeitsagentur",
+"url": "https://www.arbeitsagentur.de/jobsuche"
+}
+]
+},
+{
+"name": "Ghana",
+"region": "sub-saharan africa",
+"terms": [
+"ghana",
+"sub-saharan africa",
+"africa",
+"emea"
+],
+"portals": [
+{
+"name": "Jobberman Ghana",
+"url": "https://www.jobberman.com.gh"
+},
+{
+"name": "MyJobMag Ghana",
+"url": "https://www.myjobmag.com.gh"
+}
+]
+},
+{
+"name": "Greece",
+"region": "western europe",
+"terms": [
+"greece",
+"western europe",
+"europe",
+"emea",
+"eu"
+],
+"portals": []
+},
+{
+"name": "Guatemala",
+"region": "central america & caribbean",
+"terms": [
+"guatemala",
+"latam",
+"latin america",
+"americas"
+],
+"portals": []
+},
+{
+"name": "Haiti",
+"region": "central america & caribbean",
+"terms": [
+"haiti",
+"latam",
+"latin america",
+"americas"
+],
+"portals": []
+},
+{
+"name": "Honduras",
+"region": "central america & caribbean",
+"terms": [
+"honduras",
+"latam",
+"latin america",
+"americas"
+],
+"portals": []
+},
+{
+"name": "Hong Kong",
+"region": "east asia",
+"terms": [
+"hong kong",
+"east asia",
+"asia",
+"apac",
+"asia pacific",
+"asia-pacific"
+],
+"portals": []
+},
+{
+"name": "Hungary",
+"region": "eastern europe",
+"terms": [
+"hungary",
+"eastern europe",
+"cee",
+"europe",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Iceland",
+"region": "northern europe",
+"terms": [
+"iceland",
+"northern europe",
+"nordics",
+"europe",
+"emea",
+"eu"
+],
+"portals": []
+},
+{
+"name": "India",
+"region": "south asia",
+"terms": [
+"india",
+"south asia",
+"asia",
+"apac",
+"asia pacific",
+"asia-pacific"
+],
+"portals": [
+{
+"name": "Naukri",
+"url": "https://www.naukri.com"
+},
+{
+"name": "Foundit",
+"url": "https://www.foundit.in"
+},
+{
+"name": "Shine",
+"url": "https://www.shine.com"
+}
+]
+},
+{
+"name": "Indonesia",
+"region": "southeast asia",
+"terms": [
+"indonesia",
+"southeast asia",
+"south east asia",
+"asia",
+"apac",
+"asia pacific",
+"asia-pacific",
+"asean"
+],
+"portals": [
+{
+"name": "JobStreet",
+"url": "https://www.jobstreet.co.id"
+},
+{
+"name": "Glints",
+"url": "https://glints.com/id"
+}
+]
+},
+{
+"name": "Iran",
+"region": "middle east",
+"terms": [
+"iran",
+"middle east",
+"mena",
+"emea",
+"gulf",
+"gcc",
+"asia"
+],
+"portals": []
+},
+{
+"name": "Iraq",
+"region": "middle east",
+"terms": [
+"iraq",
+"middle east",
+"mena",
+"emea",
+"gulf",
+"gcc",
+"asia"
+],
+"portals": []
+},
+{
+"name": "Ireland",
+"region": "western europe",
+"terms": [
+"ireland",
+"western europe",
+"europe",
+"emea",
+"eu"
+],
+"portals": [
+{
+"name": "IrishJobs",
+"url": "https://www.irishjobs.ie"
+},
+{
+"name": "Jobs.ie",
+"url": "https://www.jobs.ie"
+}
+]
+},
+{
+"name": "Israel",
+"region": "middle east",
+"terms": [
+"israel",
+"middle east",
+"mena",
+"emea",
+"gulf",
+"gcc",
+"asia"
+],
+"portals": []
+},
+{
+"name": "Italy",
+"region": "western europe",
+"terms": [
+"italy",
+"western europe",
+"europe",
+"emea",
+"eu"
+],
+"portals": [
+{
+"name": "InfoJobs.it",
+"url": "https://www.infojobs.it"
+}
+]
+},
+{
+"name": "Ivory Coast",
+"region": "sub-saharan africa",
+"terms": [
+"ivory coast",
+"cote d'ivoire",
+"sub-saharan africa",
+"africa",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Jamaica",
+"region": "central america & caribbean",
+"terms": [
+"jamaica",
+"latam",
+"latin america",
+"americas"
+],
+"portals": []
+},
+{
+"name": "Japan",
+"region": "east asia",
+"terms": [
+"japan",
+"east asia",
+"asia",
+"apac",
+"asia pacific",
+"asia-pacific"
+],
+"portals": [
+{
+"name": "GaijinPot Jobs",
+"url": "https://jobs.gaijinpot.com"
+},
+{
+"name": "Daijob",
+"url": "https://www.daijob.com"
+}
+]
+},
+{
+"name": "Jordan",
+"region": "middle east",
+"terms": [
+"jordan",
+"middle east",
+"mena",
+"emea",
+"gulf",
+"gcc",
+"asia"
+],
+"portals": []
+},
+{
+"name": "Kazakhstan",
+"region": "central asia",
+"terms": [
+"kazakhstan",
+"central asia",
+"asia"
+],
+"portals": []
+},
+{
+"name": "Kenya",
+"region": "sub-saharan africa",
+"terms": [
+"kenya",
+"sub-saharan africa",
+"africa",
+"emea"
+],
+"portals": [
+{
+"name": "BrighterMonday",
+"url": "https://www.brightermonday.co.ke"
+},
+{
+"name": "MyJobMag Kenya",
+"url": "https://www.myjobmag.co.ke"
+}
+]
+},
+{
+"name": "Kuwait",
+"region": "middle east",
+"terms": [
+"kuwait",
+"middle east",
+"mena",
+"emea",
+"gulf",
+"gcc",
+"asia"
+],
+"portals": []
+},
+{
+"name": "Kyrgyzstan",
+"region": "central asia",
+"terms": [
+"kyrgyzstan",
+"central asia",
+"asia"
+],
+"portals": []
+},
+{
+"name": "Laos",
+"region": "southeast asia",
+"terms": [
+"laos",
+"southeast asia",
+"south east asia",
+"asia",
+"apac",
+"asia pacific",
+"asia-pacific",
+"asean"
+],
+"portals": []
+},
+{
+"name": "Latvia",
+"region": "northern europe",
+"terms": [
+"latvia",
+"northern europe",
+"nordics",
+"europe",
+"emea",
+"eu"
+],
+"portals": []
+},
+{
+"name": "Lebanon",
+"region": "middle east",
+"terms": [
+"lebanon",
+"middle east",
+"mena",
+"emea",
+"gulf",
+"gcc",
+"asia"
+],
+"portals": []
+},
+{
+"name": "Libya",
+"region": "north africa",
+"terms": [
+"libya",
+"north africa",
+"mena",
+"africa",
+"emea",
+"middle east"
+],
+"portals": []
+},
+{
+"name": "Lithuania",
+"region": "northern europe",
+"terms": [
+"lithuania",
+"northern europe",
+"nordics",
+"europe",
+"emea",
+"eu"
+],
+"portals": []
+},
+{
+"name": "Luxembourg",
+"region": "western europe",
+"terms": [
+"luxembourg",
+"western europe",
+"europe",
+"emea",
+"eu"
+],
+"portals": []
+},
+{
+"name": "Madagascar",
+"region": "sub-saharan africa",
+"terms": [
+"madagascar",
+"sub-saharan africa",
+"africa",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Malawi",
+"region": "sub-saharan africa",
+"terms": [
+"malawi",
+"sub-saharan africa",
+"africa",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Malaysia",
+"region": "southeast asia",
+"terms": [
+"malaysia",
+"southeast asia",
+"south east asia",
+"asia",
+"apac",
+"asia pacific",
+"asia-pacific",
+"asean"
+],
+"portals": [
+{
+"name": "JobStreet",
+"url": "https://www.jobstreet.com.my"
+},
+{
+"name": "Hiredly",
+"url": "https://my.hiredly.com"
+}
+]
+},
+{
+"name": "Maldives",
+"region": "south asia",
+"terms": [
+"maldives",
+"south asia",
+"asia",
+"apac",
+"asia pacific",
+"asia-pacific"
+],
+"portals": []
+},
+{
+"name": "Mali",
+"region": "sub-saharan africa",
+"terms": [
+"mali",
+"sub-saharan africa",
+"africa",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Malta",
+"region": "western europe",
+"terms": [
+"malta",
+"western europe",
+"europe",
+"emea",
+"eu"
+],
+"portals": []
+},
+{
+"name": "Mauritius",
+"region": "sub-saharan africa",
+"terms": [
+"mauritius",
+"sub-saharan africa",
+"africa",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Mexico",
+"region": "north america",
+"terms": [
+"mexico",
+"north america",
+"americas"
+],
+"portals": [
+{
+"name": "OCC Mundial",
+"url": "https://www.occ.com.mx"
+},
+{
+"name": "Computrabajo",
+"url": "https://www.computrabajo.com.mx"
+}
+]
+},
+{
+"name": "Moldova",
+"region": "eastern europe",
+"terms": [
+"moldova",
+"eastern europe",
+"cee",
+"europe",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Mongolia",
+"region": "east asia",
+"terms": [
+"mongolia",
+"east asia",
+"asia",
+"apac",
+"asia pacific",
+"asia-pacific"
+],
+"portals": []
+},
+{
+"name": "Montenegro",
+"region": "eastern europe",
+"terms": [
+"montenegro",
+"eastern europe",
+"cee",
+"europe",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Morocco",
+"region": "north africa",
+"terms": [
+"morocco",
+"north africa",
+"mena",
+"africa",
+"emea",
+"middle east"
+],
+"portals": [
+{
+"name": "Rekrute",
+"url": "https://www.rekrute.com"
+},
+{
+"name": "Emploi.ma",
+"url": "https://www.emploi.ma"
+}
+]
+},
+{
+"name": "Mozambique",
+"region": "sub-saharan africa",
+"terms": [
+"mozambique",
+"sub-saharan africa",
+"africa",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Myanmar",
+"region": "southeast asia",
+"terms": [
+"myanmar",
+"southeast asia",
+"south east asia",
+"asia",
+"apac",
+"asia pacific",
+"asia-pacific",
+"asean"
+],
+"portals": []
+},
+{
+"name": "Namibia",
+"region": "sub-saharan africa",
+"terms": [
+"namibia",
+"sub-saharan africa",
+"africa",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Nepal",
+"region": "south asia",
+"terms": [
+"nepal",
+"south asia",
+"asia",
+"apac",
+"asia pacific",
+"asia-pacific"
+],
+"portals": [
+{
+"name": "Merojob",
+"url": "https://merojob.com"
+},
+{
+"name": "Kumari Job",
+"url": "https://www.kumarijob.com"
+}
+]
+},
+{
+"name": "Netherlands",
+"region": "western europe",
+"terms": [
+"netherlands",
+"holland",
+"western europe",
+"europe",
+"emea",
+"eu"
+],
+"portals": [
+{
+"name": "Nationale Vacaturebank",
+"url": "https://www.nationalevacaturebank.nl"
+},
+{
+"name": "Werk.nl",
+"url": "https://www.werk.nl"
+}
+]
+},
+{
+"name": "New Zealand",
+"region": "oceania",
+"terms": [
+"new zealand",
+"oceania",
+"apac",
+"asia pacific",
+"asia-pacific",
+"anz"
+],
+"portals": [
+{
+"name": "SEEK NZ",
+"url": "https://www.seek.co.nz"
+},
+{
+"name": "Trade Me Jobs",
+"url": "https://www.trademe.co.nz/a/jobs"
+}
+]
+},
+{
+"name": "Nicaragua",
+"region": "central america & caribbean",
+"terms": [
+"nicaragua",
+"latam",
+"latin america",
+"americas"
+],
+"portals": []
+},
+{
+"name": "Niger",
+"region": "sub-saharan africa",
+"terms": [
+"niger",
+"sub-saharan africa",
+"africa",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Nigeria",
+"region": "sub-saharan africa",
+"terms": [
+"nigeria",
+"sub-saharan africa",
+"africa",
+"emea"
+],
+"portals": [
+{
+"name": "Jobberman",
+"url": "https://www.jobberman.com"
+},
+{
+"name": "MyJobMag",
+"url": "https://www.myjobmag.com"
+}
+]
+},
+{
+"name": "North Korea",
+"region": "east asia",
+"terms": [
+"north korea",
+"east asia",
+"asia",
+"apac",
+"asia pacific",
+"asia-pacific"
+],
+"portals": []
+},
+{
+"name": "North Macedonia",
+"region": "eastern europe",
+"terms": [
+"north macedonia",
+"eastern europe",
+"cee",
+"europe",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Norway",
+"region": "northern europe",
+"terms": [
+"norway",
+"northern europe",
+"nordics",
+"europe",
+"emea",
+"eu"
+],
+"portals": [
+{
+"name": "Finn.no Jobb",
+"url": "https://www.finn.no/job"
+},
+{
+"name": "NAV Arbeidsplassen",
+"url": "https://arbeidsplassen.nav.no"
+}
+]
+},
+{
+"name": "Oman",
+"region": "middle east",
+"terms": [
+"oman",
+"middle east",
+"mena",
+"emea",
+"gulf",
+"gcc",
+"asia"
+],
+"portals": []
+},
+{
+"name": "Pakistan",
+"region": "south asia",
+"terms": [
+"pakistan",
+"south asia",
+"asia",
+"apac",
+"asia pacific",
+"asia-pacific"
+],
+"portals": [
+{
+"name": "Rozee.pk",
+"url": "https://www.rozee.pk"
+},
+{
+"name": "Mustakbil",
+"url": "https://www.mustakbil.com"
+}
+]
+},
+{
+"name": "Palestine",
+"region": "middle east",
+"terms": [
+"palestine",
+"middle east",
+"mena",
+"emea",
+"gulf",
+"gcc",
+"asia"
+],
+"portals": []
+},
+{
+"name": "Panama",
+"region": "central america & caribbean",
+"terms": [
+"panama",
+"latam",
+"latin america",
+"americas"
+],
+"portals": []
+},
+{
+"name": "Papua New Guinea",
+"region": "oceania",
+"terms": [
+"papua new guinea",
+"oceania",
+"apac",
+"asia pacific",
+"asia-pacific",
+"anz"
+],
+"portals": []
+},
+{
+"name": "Paraguay",
+"region": "south america",
+"terms": [
+"paraguay",
+"south america",
+"latam",
+"latin america",
+"americas"
+],
+"portals": []
+},
+{
+"name": "Peru",
+"region": "south america",
+"terms": [
+"peru",
+"south america",
+"latam",
+"latin america",
+"americas"
+],
+"portals": [
+{
+"name": "Bumeran",
+"url": "https://www.bumeran.com.pe"
+},
+{
+"name": "Computrabajo",
+"url": "https://www.computrabajo.com.pe"
+}
+]
+},
+{
+"name": "Philippines",
+"region": "southeast asia",
+"terms": [
+"philippines",
+"southeast asia",
+"south east asia",
+"asia",
+"apac",
+"asia pacific",
+"asia-pacific",
+"asean"
+],
+"portals": [
+{
+"name": "JobStreet",
+"url": "https://www.jobstreet.com.ph"
+},
+{
+"name": "Kalibrr",
+"url": "https://www.kalibrr.com"
+}
+]
+},
+{
+"name": "Poland",
+"region": "eastern europe",
+"terms": [
+"poland",
+"eastern europe",
+"cee",
+"europe",
+"emea"
+],
+"portals": [
+{
+"name": "Pracuj.pl",
+"url": "https://www.pracuj.pl"
+},
+{
+"name": "No Fluff Jobs",
+"url": "https://nofluffjobs.com"
+},
+{
+"name": "Just Join IT",
+"url": "https://justjoin.it"
+}
+]
+},
+{
+"name": "Portugal",
+"region": "western europe",
+"terms": [
+"portugal",
+"western europe",
+"europe",
+"emea",
+"eu"
+],
+"portals": [
+{
+"name": "Net-Empregos",
+"url": "https://www.net-empregos.com"
+},
+{
+"name": "Sapo Emprego",
+"url": "https://emprego.sapo.pt"
+}
+]
+},
+{
+"name": "Qatar",
+"region": "middle east",
+"terms": [
+"qatar",
+"middle east",
+"mena",
+"emea",
+"gulf",
+"gcc",
+"asia"
+],
+"portals": [
+{
+"name": "Bayt",
+"url": "https://www.bayt.com"
+},
+{
+"name": "GulfTalent",
+"url": "https://www.gulftalent.com"
+}
+]
+},
+{
+"name": "Romania",
+"region": "eastern europe",
+"terms": [
+"romania",
+"eastern europe",
+"cee",
+"europe",
+"emea"
+],
+"portals": [
+{
+"name": "eJobs",
+"url": "https://www.ejobs.ro"
+},
+{
+"name": "BestJobs",
+"url": "https://www.bestjobs.eu"
+}
+]
+},
+{
+"name": "Russia",
+"region": "eastern europe",
+"terms": [
+"russia",
+"eastern europe",
+"cee",
+"europe",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Rwanda",
+"region": "sub-saharan africa",
+"terms": [
+"rwanda",
+"sub-saharan africa",
+"africa",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Saudi Arabia",
+"region": "middle east",
+"terms": [
+"saudi arabia",
+"middle east",
+"mena",
+"emea",
+"gulf",
+"gcc",
+"asia"
+],
+"portals": [
+{
+"name": "Bayt",
+"url": "https://www.bayt.com"
+},
+{
+"name": "Naukrigulf",
+"url": "https://www.naukrigulf.com"
+},
+{
+"name": "GulfTalent",
+"url": "https://www.gulftalent.com"
+}
+]
+},
+{
+"name": "Senegal",
+"region": "sub-saharan africa",
+"terms": [
+"senegal",
+"sub-saharan africa",
+"africa",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Serbia",
+"region": "eastern europe",
+"terms": [
+"serbia",
+"eastern europe",
+"cee",
+"europe",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Singapore",
+"region": "southeast asia",
+"terms": [
+"singapore",
+"southeast asia",
+"south east asia",
+"asia",
+"apac",
+"asia pacific",
+"asia-pacific",
+"asean"
+],
+"portals": [
+{
+"name": "MyCareersFuture",
+"url": "https://www.mycareersfuture.gov.sg"
+},
+{
+"name": "JobStreet",
+"url": "https://www.jobstreet.com.sg"
+}
+]
+},
+{
+"name": "Slovakia",
+"region": "eastern europe",
+"terms": [
+"slovakia",
+"eastern europe",
+"cee",
+"europe",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Slovenia",
+"region": "eastern europe",
+"terms": [
+"slovenia",
+"eastern europe",
+"cee",
+"europe",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Somalia",
+"region": "sub-saharan africa",
+"terms": [
+"somalia",
+"sub-saharan africa",
+"africa",
+"emea"
+],
+"portals": []
+},
+{
+"name": "South Africa",
+"region": "sub-saharan africa",
+"terms": [
+"south africa",
+"sub-saharan africa",
+"africa",
+"emea"
+],
+"portals": [
+{
+"name": "PNet",
+"url": "https://www.pnet.co.za"
+},
+{
+"name": "CareerJunction",
+"url": "https://www.careerjunction.co.za"
+}
+]
+},
+{
+"name": "South Korea",
+"region": "east asia",
+"terms": [
+"south korea",
+"korea",
+"east asia",
+"asia",
+"apac",
+"asia pacific",
+"asia-pacific"
+],
+"portals": [
+{
+"name": "Saramin",
+"url": "https://www.saramin.co.kr"
+},
+{
+"name": "JobKorea",
+"url": "https://www.jobkorea.co.kr"
+}
+]
+},
+{
+"name": "Spain",
+"region": "western europe",
+"terms": [
+"spain",
+"western europe",
+"europe",
+"emea",
+"eu"
+],
+"portals": [
+{
+"name": "InfoJobs",
+"url": "https://www.infojobs.net"
+},
+{
+"name": "Tecnoempleo",
+"url": "https://www.tecnoempleo.com"
+}
+]
+},
+{
+"name": "Sri Lanka",
+"region": "south asia",
+"terms": [
+"sri lanka",
+"south asia",
+"asia",
+"apac",
+"asia pacific",
+"asia-pacific"
+],
+"portals": [
+{
+"name": "TopJobs",
+"url": "https://www.topjobs.lk"
+},
+{
+"name": "Xpress Jobs",
+"url": "https://www.xpress.jobs"
+}
+]
+},
+{
+"name": "Sudan",
+"region": "north africa",
+"terms": [
+"sudan",
+"north africa",
+"mena",
+"africa",
+"emea",
+"middle east"
+],
+"portals": []
+},
+{
+"name": "Sweden",
+"region": "northern europe",
+"terms": [
+"sweden",
+"northern europe",
+"nordics",
+"europe",
+"emea",
+"eu"
+],
+"portals": [
+{
+"name": "Platsbanken",
+"url": "https://arbetsformedlingen.se/platsbanken"
+},
+{
+"name": "Jobbsafari",
+"url": "https://www.jobbsafari.se"
+}
+]
+},
+{
+"name": "Switzerland",
+"region": "western europe",
+"terms": [
+"switzerland",
+"western europe",
+"europe",
+"emea",
+"eu"
+],
+"portals": [
+{
+"name": "Jobs.ch",
+"url": "https://www.jobs.ch"
+},
+{
+"name": "JobScout24",
+"url": "https://www.jobscout24.ch"
+}
+]
+},
+{
+"name": "Syria",
+"region": "middle east",
+"terms": [
+"syria",
+"middle east",
+"mena",
+"emea",
+"gulf",
+"gcc",
+"asia"
+],
+"portals": []
+},
+{
+"name": "Taiwan",
+"region": "east asia",
+"terms": [
+"taiwan",
+"east asia",
+"asia",
+"apac",
+"asia pacific",
+"asia-pacific"
+],
+"portals": []
+},
+{
+"name": "Tajikistan",
+"region": "central asia",
+"terms": [
+"tajikistan",
+"central asia",
+"asia"
+],
+"portals": []
+},
+{
+"name": "Tanzania",
+"region": "sub-saharan africa",
+"terms": [
+"tanzania",
+"sub-saharan africa",
+"africa",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Thailand",
+"region": "southeast asia",
+"terms": [
+"thailand",
+"southeast asia",
+"south east asia",
+"asia",
+"apac",
+"asia pacific",
+"asia-pacific",
+"asean"
+],
+"portals": [
+{
+"name": "JobsDB",
+"url": "https://th.jobsdb.com"
+},
+{
+"name": "JobThai",
+"url": "https://www.jobthai.com"
+}
+]
+},
+{
+"name": "Timor-Leste",
+"region": "southeast asia",
+"terms": [
+"timor-leste",
+"southeast asia",
+"south east asia",
+"asia",
+"apac",
+"asia pacific",
+"asia-pacific",
+"asean"
+],
+"portals": []
+},
+{
+"name": "Trinidad and Tobago",
+"region": "central america & caribbean",
+"terms": [
+"trinidad and tobago",
+"latam",
+"latin america",
+"americas"
+],
+"portals": []
+},
+{
+"name": "Tunisia",
+"region": "north africa",
+"terms": [
+"tunisia",
+"north africa",
+"mena",
+"africa",
+"emea",
+"middle east"
+],
+"portals": []
+},
+{
+"name": "Turkey",
+"region": "middle east",
+"terms": [
+"turkey",
+"turkiye",
+"middle east",
+"mena",
+"emea",
+"gulf",
+"gcc",
+"asia"
+],
+"portals": [
+{
+"name": "Kariyer.net",
+"url": "https://www.kariyer.net"
+},
+{
+"name": "Secretcv",
+"url": "https://www.secretcv.com"
+}
+]
+},
+{
+"name": "Turkmenistan",
+"region": "central asia",
+"terms": [
+"turkmenistan",
+"central asia",
+"asia"
+],
+"portals": []
+},
+{
+"name": "Uganda",
+"region": "sub-saharan africa",
+"terms": [
+"uganda",
+"sub-saharan africa",
+"africa",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Ukraine",
+"region": "eastern europe",
+"terms": [
+"ukraine",
+"eastern europe",
+"cee",
+"europe",
+"emea"
+],
+"portals": [
+{
+"name": "Work.ua",
+"url": "https://www.work.ua"
+},
+{
+"name": "DOU Jobs",
+"url": "https://jobs.dou.ua"
+}
+]
+},
+{
+"name": "United Arab Emirates",
+"region": "middle east",
+"terms": [
+"united arab emirates",
+"uae",
+"dubai",
+"abu dhabi",
+"middle east",
+"mena",
+"emea",
+"gulf",
+"gcc",
+"asia"
+],
+"portals": [
+{
+"name": "Bayt",
+"url": "https://www.bayt.com"
+},
+{
+"name": "GulfTalent",
+"url": "https://www.gulftalent.com"
+},
+{
+"name": "Naukrigulf",
+"url": "https://www.naukrigulf.com"
+}
+]
+},
+{
+"name": "United Kingdom",
+"region": "western europe",
+"terms": [
+"united kingdom",
+"uk",
+"great britain",
+"england",
+"scotland",
+"wales",
+"western europe",
+"europe",
+"emea",
+"eu"
+],
+"portals": [
+{
+"name": "Reed",
+"url": "https://www.reed.co.uk"
+},
+{
+"name": "Totaljobs",
+"url": "https://www.totaljobs.com"
+},
+{
+"name": "CV-Library",
+"url": "https://www.cv-library.co.uk"
+},
+{
+"name": "Civil Service Jobs",
+"url": "https://www.civilservicejobs.service.gov.uk"
+}
+]
+},
+{
+"name": "United States",
+"region": "north america",
+"terms": [
+"united states",
+"usa",
+"us",
+"u.s.",
+"america",
+"north america",
+"americas"
+],
+"portals": [
+{
+"name": "USAJobs",
+"url": "https://www.usajobs.gov"
+},
+{
+"name": "Dice",
+"url": "https://www.dice.com"
+},
+{
+"name": "Built In",
+"url": "https://builtin.com/jobs"
+},
+{
+"name": "Wellfound",
+"url": "https://wellfound.com/jobs"
+}
+]
+},
+{
+"name": "Uruguay",
+"region": "south america",
+"terms": [
+"uruguay",
+"south america",
+"latam",
+"latin america",
+"americas"
+],
+"portals": []
+},
+{
+"name": "Uzbekistan",
+"region": "central asia",
+"terms": [
+"uzbekistan",
+"central asia",
+"asia"
+],
+"portals": []
+},
+{
+"name": "Venezuela",
+"region": "south america",
+"terms": [
+"venezuela",
+"south america",
+"latam",
+"latin america",
+"americas"
+],
+"portals": []
+},
+{
+"name": "Vietnam",
+"region": "southeast asia",
+"terms": [
+"vietnam",
+"southeast asia",
+"south east asia",
+"asia",
+"apac",
+"asia pacific",
+"asia-pacific",
+"asean"
+],
+"portals": [
+{
+"name": "VietnamWorks",
+"url": "https://www.vietnamworks.com"
+},
+{
+"name": "TopCV",
+"url": "https://www.topcv.vn"
+}
+]
+},
+{
+"name": "Yemen",
+"region": "middle east",
+"terms": [
+"yemen",
+"middle east",
+"mena",
+"emea",
+"gulf",
+"gcc",
+"asia"
+],
+"portals": []
+},
+{
+"name": "Zambia",
+"region": "sub-saharan africa",
+"terms": [
+"zambia",
+"sub-saharan africa",
+"africa",
+"emea"
+],
+"portals": []
+},
+{
+"name": "Zimbabwe",
+"region": "sub-saharan africa",
+"terms": [
+"zimbabwe",
+"sub-saharan africa",
+"africa",
+"emea"
+],
+"portals": []
+}
+]

@@ -127,7 +127,9 @@ def search():
     query = " ".join(queries)
     country = request.form.get("country", "").strip() or "Bangladesh"
     log = []
-    jobs = search_all(queries, country, log.append)
+    scope = request.form.get("scope", "both")
+    scope = scope if scope in ("local", "remote", "both") else "both"
+    jobs = search_all(queries, country, log.append, scope)
     ranked = rank(cv, jobs, query, remote_only=request.form.get("remote") == "on",
                   min_score=float(request.form.get("min_score") or 0))
     for j in ranked:
@@ -160,7 +162,9 @@ def search():
     if not top:
         record(0)
         return jsonify(error=f"{len(jobs)} jobs found, but none passed the filters (minimum match, eligibility for {country}). "
-                             "Lower 'Minimum match %' or choose 'Show all jobs with status'."), 400
+                             "Lower 'Minimum match %' or choose 'Show all jobs with status'." +
+                             (" This country has no free local job feed yet: choose 'Local + remote', or ask the admin to add a Jooble / Adzuna key."
+                              if scope == "local" and not jobs else "")), 400
     tracked = record(len(top))
     name = f"job_search_{time.strftime('%Y%m%d_%H%M%S')}.xlsx"
     tmp = UP / f"{uuid.uuid4().hex}.xlsx"
@@ -171,7 +175,7 @@ def search():
         tmp.unlink(missing_ok=True)  # nothing about the search is kept on the server
     keys =("title", "company", "source", "score", "salary", "type", "apply_url", "posted", "eligible", "eligible_why", "location")
     return jsonify(file=name, xlsx=xlsx, log=log, skills=cv["skills"], years=cv["years"], total=len(jobs), country=country,
-                   not_eligible=len(not_eligible), expired=len(expired), tracked=tracked,
+                   queries=queries, scope=scope, not_eligible=len(not_eligible), expired=len(expired), tracked=tracked,
                    jobs=[{k: j[k] for k in keys} | {"key": hashlib.sha1(j["apply_url"].encode()).hexdigest()[:20],
                                                     "deadline": str(j["deadline"] or ""), "days_left": j["days_left"]} for j in top])
 

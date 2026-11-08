@@ -14,6 +14,16 @@ def clean(s):
     return re.sub(r"\s+", " ", s).strip()
 
 
+def fix_text(s):
+    """Some feeds send text that was UTF-8 decoded twice (Sothebyâ€™s). Undo that when it is clearly the case."""
+    if isinstance(s, str) and any(m in s for m in ("â€", "Ã", "Â")):
+        try:
+            return s.encode("cp1252").decode("utf-8")
+        except (UnicodeEncodeError, UnicodeDecodeError):
+            return s
+    return s
+
+
 def search_all(queries, country="Bangladesh", log=print):
     """Global feeds run for everyone; country sources (BDJobs, Skill.Jobs...) only for their country."""
     from . import remotive, remoteok, arbeitnow, bdjobs, skilljobs, jooble
@@ -37,4 +47,7 @@ def search_all(queries, country="Bangladesh", log=print):
             run(mod.NAME, lambda: mod.search(queries[0]))
     for q in queries:
         run(f"Jooble '{q}'", lambda q=q: jooble.search(q, country))
+    for j in jobs:
+        for k in ("title", "company", "location", "salary"):
+            j[k] = fix_text(j.get(k))
     return jobs

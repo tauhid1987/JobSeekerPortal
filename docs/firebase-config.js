@@ -8,4 +8,4 @@ export const firebaseConfig = {
   "appId": "1:1075999217406:web:a6825ab1f99ff6a94c77af"
 };
 export const EMULATOR = false;
-export const API_BASE = 'https://REPLACE-WITH-YOUR-SERVER.onrender.com';
+export const API_BASE = 'https://jobmatch-api-sxg7.onrender.com';

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JobMatch</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;max-width:860px;margin:30px auto;padding:0 16px;color:#222}
+h1{color:#1F4E78}.card{border:1px solid #ddd;border-radius:8px;padding:18px;margin-bottom:16px}
+label{display:block;margin:10px 0 4px;font-weight:600}input[type=text],input[type=number]{padding:7px;width:260px}
+button{background:#1F4E78;color:#fff;border:0;padding:10px 22px;border-radius:6px;font-size:15px;cursor:pointer}
+button:disabled{opacity:.5}table{border-collapse:collapse;width:100%;font-size:14px}
+td,th{border:1px solid #ddd;padding:6px;text-align:left}th{background:#1F4E78;color:#fff}.muted{color:#666;font-size:13px}
+</style></head><body>
+<h1>JobMatch</h1>
+<p class="muted">Upload your CV, get a ranked job list as Excel. Your CV is read on this PC only and deleted right after reading.</p>
+<form id="f" class="card">
+  <label>CV (PDF, DOCX or TXT)</label><input type="file" name="cv" accept=".pdf,.docx,.txt" required>
+  <label>Job titles (comma separated, optional)</label><input type="text" name="query" placeholder="e.g. QA Lead, QA Engineer (comma separated)">
+  <label>Max jobs in Excel</label><input type="number" name="limit" value="100" min="10" max="500">
+  <label>Minimum match %</label><input type="number" name="min_score" value="30" min="0" max="100">
+  <label>Your country (can you apply?)</label><input type="text" name="country" value="Bangladesh">
+  <label>Eligibility filter</label><select name="eligibility"><option value="strict">Only jobs I can apply for (recommended)</option><option value="all">Show all jobs with status</option></select>
+  <label>Rank by</label><select name="sort"><option value="match">Best match</option><option value="deadline">Closest deadline first</option></select>
+  <label><input type="checkbox" name="remote"> Remote jobs only</label>
+  <br><button id="b">Search jobs</button>
+</form>
+<div id="out"></div>
+<script>
+f.onsubmit=async e=>{e.preventDefault();b.disabled=true;out.innerHTML='<p>Searching job sites, please wait...</p>';
+ try{const r=await fetch('/search',{method:'POST',body:new FormData(f)});const d=await r.json();
+ if(!r.ok){out.innerHTML='<p style="color:#b00">'+d.error+'</p>';return}
+ const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+ out.innerHTML='<div class="card"><p><b>'+d.total+'</b> jobs found. Skills read from CV: '+esc(d.skills.join(', ')||'none')+
+ ' ('+d.with_deadline+' with a stated deadline, '+d.expired+' expired and removed, '+d.not_eligible+' not open to '+esc(d.country)+')</p><p><a href="/download/'+d.file+'"><button type="button">Download Excel</button></a></p>'+
+ '<p class="muted">'+d.log.map(esc).join(' &middot; ')+'</p><table><tr><th>#</th><th>Title</th><th>Company</th><th>Match %</th><th>Can apply?</th><th>Posted</th><th>Deadline</th><th>Salary</th></tr>'+
+ d.jobs.map((j,i)=>'<tr><td>'+(i+1)+'</td><td><a href="'+esc(j.apply_url)+'" target="_blank">'+esc(j.title)+'</a></td><td>'+esc(j.company)+'</td><td>'+j.score+'</td><td><b>'+esc(j.eligible)+'</b><br><span class="muted">'+esc(j.eligible_why)+'</span></td><td>'+esc(j.posted||'-')+'</td><td>'+esc(j.deadline||'-')+'</td><td>'+esc(j.salary||'-')+'</td></tr>').join('')+'</table></div>';
+ }catch(x){out.innerHTML='<p style="color:#b00">'+x+'</p>'}finally{b.disabled=false}};
+</script></body></html>

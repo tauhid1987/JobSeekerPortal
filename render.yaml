@@ -1,0 +1,16 @@
+# Render "Blueprint": deploys the JobMatch search server (the Python part). Pages (docs/) stay on GitHub Pages.
+services:
+  - type: web
+    name: jobmatch-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app.server:app --workers 1 --threads 4 --timeout 180 --bind 0.0.0.0:$PORT
+    healthCheckPath: /firebase-config.js
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: JOBMATCH_ORIGINS
+        value: https://tauhid1987.github.io
+      - key: JOOBLE_KEY        # optional: your Jooble API key (adds Bangladesh jobs); set it in the Render dashboard
+        sync: false

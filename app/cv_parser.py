@@ -36,13 +36,17 @@ def read_text(path):
     return p.read_text(encoding="utf-8", errors="ignore")
 
 
+_ALL = sorted(set(PHRASES + WORDS), key=len, reverse=True)
+_RX = re.compile(r"(?<![\w+#.])(" + "|".join(re.escape(t) for t in _ALL) + r")(?![\w+#])")
+
+
 def _has(text, term):
     return re.search(r"(?<![\w+#.])" + re.escape(term) + r"(?![\w+#])", text) is not None
 
 
-def extract_skills(text):
-    t = text.lower()
-    return sorted({s for s in PHRASES + WORDS if _has(t, s)})
+def extract_skills(text, limit=6000):
+    """One pass over the text with a single combined pattern (fast enough for thousands of job ads)."""
+    return sorted(set(_RX.findall((text[:limit] if limit else text).lower())))
 
 
 def extract_years(text):
@@ -61,4 +65,4 @@ def extract_titles(text):
 
 def parse_cv(path):
     text = read_text(path)
-    return {"text": text, "skills": extract_skills(text), "years": extract_years(text), "titles": extract_titles(text)}
+    return {"text": text, "skills": extract_skills(text, None), "years": extract_years(text), "titles": extract_titles(text)}

@@ -34,11 +34,7 @@ def search_all(queries, country="Bangladesh", log=print):
     run("Arbeitnow", lambda: arbeitnow.search(""))
     for mod in (bdjobs, skilljobs):
         if country.lower() in mod.COUNTRIES:
-            if mod is skilljobs:
-                for q in queries:
-                    run(f"{mod.NAME} '{q}'", lambda q=q: mod.search(q))
-            else:
-                run(mod.NAME, lambda: mod.search(""))
+            run(mod.NAME, lambda: mod.search(queries[0]))
     for q in queries:
         run(f"Jooble '{q}'", lambda q=q: jooble.search(q, country))
     return jobs

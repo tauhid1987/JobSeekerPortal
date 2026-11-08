@@ -2,7 +2,7 @@
 schema.org JobPosting data (title, company, deadline, salary). A few jobs per title, with a short pause."""
 import re
 import json
-import time
+from concurrent.futures import ThreadPoolExecutor
 import datetime as dt
 import requests
 from . import clean
@@ -39,34 +39,36 @@ def _posting(url):
     return None
 
 
+def _job(path):
+    try:
+        d = _posting("https://skill.jobs" + path)
+    except Exception:
+        return None
+    if not d:
+        return None
+    deadline = None
+    try:
+        deadline = dt.datetime.strptime((d.get("validThrough") or "")[:10], "%Y-%m-%d").date()
+    except ValueError:
+        pass
+    loc = d.get("jobLocation") or {}
+    loc = loc[0] if isinstance(loc, list) and loc else loc
+    addr = (loc.get("address") or {}) if isinstance(loc, dict) else {}
+    place = ", ".join(x for x in (addr.get("addressLocality"), addr.get("addressRegion")) if x) or "Bangladesh"
+    et = d.get("employmentType") or ""
+    et = ", ".join(et) if isinstance(et, list) else et
+    return {"title": clean(d.get("title")), "company": clean((d.get("hiringOrganization") or {}).get("name")),
+            "salary": _salary(d.get("baseSalary") or {}), "apply_url": "https://skill.jobs" + path,
+            "type": et.replace("_", " ").title(), "location": place,
+            "remote": d.get("jobLocationType") == "TELECOMMUTE",
+            "posted": (d.get("datePosted") or "")[:10], "tags": [],
+            "description": clean(d.get("description")) + " " + clean(d.get("skills") or ""),
+            "deadline": deadline, "country": "Bangladesh", "source": NAME}
+
+
 def search(query):
-    r = requests.get("https://skill.jobs/browse-jobs", params={"search": query}, headers=UA, timeout=40)
+    """One listing request, then the job pages read 5 at a time (the site's own search ignores keywords)."""
+    r = requests.get("https://skill.jobs/browse-jobs", params={"search": query}, headers=UA, timeout=30)
     links = list(dict.fromkeys(re.findall(r'href="(/jobs/[^"#?]+)"', r.text)))[:PER_QUERY]
-    out = []
-    for path in links:
-        time.sleep(0.4)
-        try:
-            d = _posting("https://skill.jobs" + path)
-        except Exception:
-            continue
-        if not d:
-            continue
-        deadline = None
-        try:
-            deadline = dt.datetime.strptime((d.get("validThrough") or "")[:10], "%Y-%m-%d").date()
-        except ValueError:
-            pass
-        loc = d.get("jobLocation") or {}
-        loc = loc[0] if isinstance(loc, list) and loc else loc
-        addr = (loc.get("address") or {}) if isinstance(loc, dict) else {}
-        place = ", ".join(x for x in (addr.get("addressLocality"), addr.get("addressRegion")) if x) or "Bangladesh"
-        et = d.get("employmentType") or ""
-        et = ", ".join(et) if isinstance(et, list) else et
-        out.append({"title": clean(d.get("title")), "company": clean((d.get("hiringOrganization") or {}).get("name")),
-                    "salary": _salary(d.get("baseSalary") or {}), "apply_url": "https://skill.jobs" + path,
-                    "type": et.replace("_", " ").title(), "location": place,
-                    "remote": d.get("jobLocationType") == "TELECOMMUTE",
-                    "posted": (d.get("datePosted") or "")[:10], "tags": [],
-                    "description": clean(d.get("description")) + " " + clean(d.get("skills") or ""),
-                    "deadline": deadline, "country": "Bangladesh", "source": NAME})
-    return out
+    with ThreadPoolExecutor(5) as ex:
+        return [j for j in ex.map(_job, links) if j]

@@ -1,0 +1,69 @@
+{
+  "members": {
+    ".read": "auth != null && root.child('hosts').child(auth.uid).val() === true",
+    "$uid": {
+      ".read": "auth != null && auth.uid === $uid",
+      ".write": "auth != null && root.child('hosts').child(auth.uid).val() === true",
+      ".validate": "newData.hasChildren(['active', 'name'])",
+      "active": { ".validate": "newData.isBoolean()" },
+      "name": { ".validate": "newData.isString() && newData.val().length <= 60" }
+    }
+  },
+  "requests": {
+    ".read": "auth != null && root.child('hosts').child(auth.uid).val() === true",
+    "$uid": {
+      ".read": "auth != null && auth.uid === $uid",
+      ".write": "auth != null && ((auth.uid === $uid && !data.exists()) || root.child('hosts').child(auth.uid).val() === true)",
+      ".validate": "newData.hasChildren(['name', 'email', 'at'])",
+      "name": { ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 60" },
+      "email": { ".validate": "newData.isString() && newData.val().length <= 120" },
+      "at": { ".validate": "newData.val() === now" }
+    }
+  },
+  "activity": {
+    ".read": "auth != null && root.child('hosts').child(auth.uid).val() === true",
+    "$uid": {
+      ".read": "auth != null && auth.uid === $uid",
+      "$id": {
+        ".write": "auth != null && auth.uid === $uid && (root.child('jm').child('members').child(auth.uid).child('active').val() === true || root.child('hosts').child(auth.uid).val() === true) && !data.exists() && newData.exists()",
+        ".validate": "newData.hasChildren(['at', 'titles', 'country', 'found', 'shown'])",
+        "at": { ".validate": "newData.val() === now" },
+        "titles": { ".validate": "newData.isString() && newData.val().length <= 300" },
+        "country": { ".validate": "newData.isString() && newData.val().length <= 60" },
+        "found": { ".validate": "newData.isNumber()" },
+        "shown": { ".validate": "newData.isNumber()" }
+      }
+    }
+  },
+  "applications": {
+    ".read": "auth != null && root.child('hosts').child(auth.uid).val() === true",
+    "$uid": {
+      ".read": "auth != null && auth.uid === $uid",
+      "$key": {
+        ".write": "auth != null && auth.uid === $uid && $key.matches(/^[a-f0-9]{16,40}$/) && (root.child('jm').child('members').child(auth.uid).child('active').val() === true || root.child('hosts').child(auth.uid).val() === true) && newData.exists() && (!data.exists() || newData.child('createdAt').val() === data.child('createdAt').val())",
+        ".validate": "newData.hasChildren(['title', 'company', 'status', 'createdAt', 'updatedAt']) && newData.child('updatedAt').val() === now",
+        "title": { ".validate": "newData.isString() && newData.val().length <= 200" },
+        "company": { ".validate": "newData.isString() && newData.val().length <= 120" },
+        "url": { ".validate": "newData.isString() && newData.val().length <= 600" },
+        "source": { ".validate": "newData.isString() && newData.val().length <= 40" },
+        "note": { ".validate": "newData.isString() && newData.val().length <= 500" },
+        "status": { ".validate": "newData.val() === 'saved' || newData.val() === 'applied' || newData.val() === 'interview' || newData.val() === 'offer' || newData.val() === 'rejected'" },
+        "createdAt": { ".validate": "data.exists() ? newData.val() === data.val() : newData.val() === now" },
+        "updatedAt": { ".validate": "newData.val() === now" },
+        "appliedAt": { ".validate": "newData.val() === now || (data.exists() && newData.val() === data.val())" }
+      }
+    }
+  },
+  "applogs": {
+    ".read": "auth != null && root.child('hosts').child(auth.uid).val() === true",
+    "$uid": {
+      ".read": "auth != null && auth.uid === $uid",
+      "$id": {
+        ".write": "auth != null && auth.uid === $uid && (root.child('jm').child('members').child(auth.uid).child('active').val() === true || root.child('hosts').child(auth.uid).val() === true) && !data.exists() && newData.exists()",
+        ".validate": "newData.hasChildren(['at', 'key', 'title', 'status'])",
+        "at": { ".validate": "newData.val() === now" },
+        "status": { ".validate": "newData.val() === 'saved' || newData.val() === 'applied' || newData.val() === 'interview' || newData.val() === 'offer' || newData.val() === 'rejected'" }
+      }
+    }
+  }
+}

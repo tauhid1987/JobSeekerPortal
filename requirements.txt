@@ -6,3 +6,5 @@ python-docx
 requests
 feedparser
 python-dotenv
+google-auth
+gunicorn

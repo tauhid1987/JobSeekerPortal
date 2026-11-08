@@ -1,0 +1,45 @@
+/* JobMatch additions on top of the Quiz Arena theme (style.css) */
+main { max-width: 1000px; }
+header.top nav { margin-left: auto; align-items: center; flex-wrap: wrap; }
+header.top nav a, header.top nav button { font-size: .95rem; }
+nav a.tab { padding: 6px 12px; border-radius: 999px; text-decoration: none; border: 1px solid var(--line); color: var(--ink); background: var(--card); }
+nav a.tab.on { background: var(--brand); color: var(--brand-ink); border-color: var(--brand); }
+.steps { display: flex; gap: 8px; margin: 0 0 14px; flex-wrap: wrap; }
+.step { display: flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); font-weight: 600; color: var(--mute); }
+.step b { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--line); color: var(--ink); font-size: .85rem; }
+.step.on { color: var(--ink); border-color: var(--brand); }
+.step.on b { background: var(--brand); color: var(--brand-ink); }
+.step.done b { background: var(--right); color: var(--card); }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0 16px; }
+.stats { display: flex; gap: 10px; flex-wrap: wrap; margin: 8px 0 14px; }
+.stat { flex: 1 1 110px; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--line); background: var(--bg); text-align: center; }
+.stat b { display: block; font-size: 1.5rem; color: var(--brand); line-height: 1.2; }
+.stat span { font-size: .8rem; color: var(--mute); }
+.pill.yes { background: var(--right-bg); color: var(--right); border-color: var(--right); }
+.pill.check { background: #fbeccc; color: #8a5a00; border-color: #d9a441; }
+.pill.visa { background: #dcebf7; color: #1b4f7d; border-color: #7fb0dc; }
+.pill.no { background: var(--wrong-bg); color: var(--wrong); border-color: var(--wrong); }
+.pill.st-saved { background: var(--bg); }
+.pill.st-applied { background: var(--right-bg); color: var(--right); border-color: var(--right); }
+.pill.st-interview { background: #dcebf7; color: #1b4f7d; border-color: #7fb0dc; }
+.pill.st-offer { background: var(--accent); color: #fff; border-color: var(--accent); }
+.pill.st-rejected { background: var(--wrong-bg); color: var(--wrong); border-color: var(--wrong); }
+.jobs td { vertical-align: top; }
+.jobs tbody tr { cursor: default; }
+.jobs .why { font-size: .8rem; color: var(--mute); }
+.jobs .acts { display: flex; flex-direction: column; gap: 6px; min-width: 128px; }
+button.small, .small-btn { padding: 5px 10px; font-size: .85rem; }
+.score { font-weight: 800; }
+.score.hi { color: var(--right); } .score.mid { color: #8a5a00; } .score.lo { color: var(--wrong); }
+.dl.hot { color: var(--wrong); font-weight: 700; } .dl.warm { color: #8a5a00; font-weight: 700; }
+.board-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+.col { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 10px; }
+.col h3 { margin: 0 0 8px; display: flex; justify-content: space-between; }
+.appcard { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; margin-bottom: 8px; font-size: .9rem; }
+.appcard select, .appcard input { padding: 5px; font-size: .85rem; }
+.notice-box { padding: 12px 14px; border-radius: 10px; background: var(--right-bg); color: var(--ink); border: 1px solid var(--right); margin-bottom: 12px; }
+.warn-box { padding: 12px 14px; border-radius: 10px; background: #fbeccc; color: #3d2a00; border: 1px solid #d9a441; margin-bottom: 12px; }
+.spinner { display: inline-block; width: 16px; height: 16px; border: 3px solid var(--line); border-top-color: var(--brand); border-radius: 50%; animation: spin .8s linear infinite; vertical-align: -3px; margin-right: 8px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.nowrap { white-space: nowrap; }
+input[type='checkbox'] { width: 20px; height: 20px; margin: 0; flex: none; }

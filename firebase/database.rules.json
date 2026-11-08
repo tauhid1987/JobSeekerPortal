@@ -1,0 +1,183 @@
+{
+  "rules": {
+    "hosts": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": false
+      }
+    },
+    "hostGames": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid && root.child('hosts').child(auth.uid).val() === true",
+        ".write": "auth != null && auth.uid === $uid && root.child('hosts').child(auth.uid).val() === true"
+      }
+    },
+    "bank": {
+      ".read": "auth != null && root.child('hosts').child(auth.uid).val() === true",
+      ".write": "auth != null && root.child('hosts').child(auth.uid).val() === true"
+    },
+    "history": {
+      ".read": "auth != null && root.child('hosts').child(auth.uid).val() === true",
+      ".write": "auth != null && root.child('hosts').child(auth.uid).val() === true"
+    },
+    "games": {
+      "$pin": {
+        ".read": "auth != null && data.child('meta/hostUid').val() === auth.uid",
+        ".write": "auth != null && $pin.matches(/^[0-9]{6}$/) && root.child('hosts').child(auth.uid).val() === true && (!data.exists() || data.child('meta/hostUid').val() === auth.uid) && (!newData.exists() || newData.child('meta/hostUid').val() === auth.uid)",
+        "meta": {
+          ".read": "auth != null"
+        },
+        "state": {
+          ".read": "auth != null"
+        },
+        "reveal": {
+          ".read": "auth != null"
+        },
+        "scores": {
+          ".read": "auth != null"
+        },
+        "players": {
+          ".read": "auth != null",
+          "$uid": {
+            ".write": "auth != null && auth.uid === $uid && root.child('games').child($pin).child('meta').exists()",
+            ".validate": "newData.hasChildren(['name']) && newData.child('name').isString() && newData.child('name').val().length >= 1 && newData.child('name').val().length <= 24",
+            "name": {
+              ".validate": true
+            },
+            "$other": {
+              ".validate": false
+            }
+          }
+        },
+        "attempts": {
+          "$uid": {
+            ".read": "auth != null && auth.uid === $uid",
+            "$q": {
+              "$o": {
+                ".write": "auth != null && auth.uid === $uid && root.child('games').child($pin).child('players').child(auth.uid).exists() && root.child('games').child($pin).child('state/phase').val() === 'question' && $q === 'q' + root.child('games').child($pin).child('state/idx').val() && now <= root.child('games').child($pin).child('state/startedAt').val() + root.child('games').child($pin).child('meta/limitMs').val() + 500",
+                ".validate": "newData.hasChildren(['at']) && newData.child('at').val() === now && root.child('games').child($pin).child('key').child($q).child($o).exists()",
+                "at": {
+                  ".validate": true
+                },
+                "$other": {
+                  ".validate": false
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "jm": {
+      "members": {
+        ".read": "auth != null && root.child('hosts').child(auth.uid).val() === true",
+        "$uid": {
+          ".read": "auth != null && auth.uid === $uid",
+          ".write": "auth != null && root.child('hosts').child(auth.uid).val() === true",
+          ".validate": "newData.hasChildren(['active', 'name'])",
+          "active": {
+            ".validate": "newData.isBoolean()"
+          },
+          "name": {
+            ".validate": "newData.isString() && newData.val().length <= 60"
+          }
+        }
+      },
+      "requests": {
+        ".read": "auth != null && root.child('hosts').child(auth.uid).val() === true",
+        "$uid": {
+          ".read": "auth != null && auth.uid === $uid",
+          ".write": "auth != null && ((auth.uid === $uid && !data.exists()) || root.child('hosts').child(auth.uid).val() === true)",
+          ".validate": "newData.hasChildren(['name', 'email', 'at'])",
+          "name": {
+            ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 60"
+          },
+          "email": {
+            ".validate": "newData.isString() && newData.val().length <= 120"
+          },
+          "at": {
+            ".validate": "newData.val() === now"
+          }
+        }
+      },
+      "activity": {
+        ".read": "auth != null && root.child('hosts').child(auth.uid).val() === true",
+        "$uid": {
+          ".read": "auth != null && auth.uid === $uid",
+          "$id": {
+            ".write": "auth != null && auth.uid === $uid && (root.child('jm').child('members').child(auth.uid).child('active').val() === true || root.child('hosts').child(auth.uid).val() === true) && !data.exists() && newData.exists()",
+            ".validate": "newData.hasChildren(['at', 'titles', 'country', 'found', 'shown'])",
+            "at": {
+              ".validate": "newData.val() === now"
+            },
+            "titles": {
+              ".validate": "newData.isString() && newData.val().length <= 300"
+            },
+            "country": {
+              ".validate": "newData.isString() && newData.val().length <= 60"
+            },
+            "found": {
+              ".validate": "newData.isNumber()"
+            },
+            "shown": {
+              ".validate": "newData.isNumber()"
+            }
+          }
+        }
+      },
+      "applications": {
+        ".read": "auth != null && root.child('hosts').child(auth.uid).val() === true",
+        "$uid": {
+          ".read": "auth != null && auth.uid === $uid",
+          "$key": {
+            ".write": "auth != null && auth.uid === $uid && $key.matches(/^[a-f0-9]{16,40}$/) && (root.child('jm').child('members').child(auth.uid).child('active').val() === true || root.child('hosts').child(auth.uid).val() === true) && newData.exists() && (!data.exists() || newData.child('createdAt').val() === data.child('createdAt').val())",
+            ".validate": "newData.hasChildren(['title', 'company', 'status', 'createdAt', 'updatedAt']) && newData.child('updatedAt').val() === now",
+            "title": {
+              ".validate": "newData.isString() && newData.val().length <= 200"
+            },
+            "company": {
+              ".validate": "newData.isString() && newData.val().length <= 120"
+            },
+            "url": {
+              ".validate": "newData.isString() && newData.val().length <= 600"
+            },
+            "source": {
+              ".validate": "newData.isString() && newData.val().length <= 40"
+            },
+            "note": {
+              ".validate": "newData.isString() && newData.val().length <= 500"
+            },
+            "status": {
+              ".validate": "newData.val() === 'saved' || newData.val() === 'applied' || newData.val() === 'interview' || newData.val() === 'offer' || newData.val() === 'rejected'"
+            },
+            "createdAt": {
+              ".validate": "data.exists() ? newData.val() === data.val() : newData.val() === now"
+            },
+            "updatedAt": {
+              ".validate": "newData.val() === now"
+            },
+            "appliedAt": {
+              ".validate": "newData.val() === now || (data.exists() && newData.val() === data.val())"
+            }
+          }
+        }
+      },
+      "applogs": {
+        ".read": "auth != null && root.child('hosts').child(auth.uid).val() === true",
+        "$uid": {
+          ".read": "auth != null && auth.uid === $uid",
+          "$id": {
+            ".write": "auth != null && auth.uid === $uid && (root.child('jm').child('members').child(auth.uid).child('active').val() === true || root.child('hosts').child(auth.uid).val() === true) && !data.exists() && newData.exists()",
+            ".validate": "newData.hasChildren(['at', 'key', 'title', 'status'])",
+            "at": {
+              ".validate": "newData.val() === now"
+            },
+            "status": {
+              ".validate": "newData.val() === 'saved' || newData.val() === 'applied' || newData.val() === 'interview' || newData.val() === 'offer' || newData.val() === 'rejected'"
+            }
+          }
+        }
+      }
+    }
+  }
+}

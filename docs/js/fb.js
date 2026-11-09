@@ -8,6 +8,7 @@ import {
   getDatabase, connectDatabaseEmulator, ref, get, set, update, remove, push, onValue, serverTimestamp,
 } from '../vendor/firebase/firebase-database.js';
 import { firebaseConfig, EMULATOR } from '../firebase-config.js';
+import { checkEmail } from './email.js';
 
 const firebaseApp = initializeApp(firebaseConfig);
 export const auth = getAuth(firebaseApp);
@@ -45,15 +46,17 @@ export function showLogin(el, message = '', mode = 'in') {
     <p class="mute">${up ? 'Create your account. An admin must approve it before you can search.' : 'Sign in to search jobs and track your applications.'}</p>
     ${message ? `<p class="error">${esc(message)}</p>` : ''}
     ${up ? '<label>Your name<input id="name" maxlength="60" autocomplete="name" required></label>' : ''}
-    <label>Email<input id="email" type="email" autocomplete="username" required></label>
+    <label>Email<input id="email" type="email" maxlength="120" autocomplete="username" required></label>
     <label>Password<input id="password" type="password" minlength="8" autocomplete="${up ? 'new-password' : 'current-password'}" required></label>
     <button class="full">${up ? 'Create account' : 'Sign in'}</button>
     <p class="center small"><a href="#" id="swap">${up ? 'I already have an account' : 'I need an account'}</a></p></form>`;
   el.querySelector('#swap').onclick = (e) => { e.preventDefault(); showLogin(el, '', up ? 'in' : 'up'); };
   el.querySelector('#login').onsubmit = async (e) => {
     e.preventDefault();
-    const email = el.querySelector('#email').value.trim();
     const password = el.querySelector('#password').value;
+    const checked = checkEmail(el.querySelector('#email').value);
+    if (up && !checked.ok) { showLogin(el, checked.error, mode); return; }  // stop before an account is created
+    const email = checked.ok ? checked.email : el.querySelector('#email').value.trim();
     try {
       if (up) {
         const name = el.querySelector('#name').value.trim();

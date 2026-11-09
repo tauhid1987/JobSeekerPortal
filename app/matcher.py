@@ -14,7 +14,9 @@ def _words(s):
     return set(re.findall(r"[a-z]{2,}", s.lower())) - GENERIC
 
 
-def rank(cv, jobs, query="", remote_only=False, min_score=0):
+def rank(cv, jobs, query="", remote_only=False, min_score=0, keep=None):
+    """keep(job) -> bool runs on every unique job BEFORE the relevance cut, so a job the user cannot
+    apply for (visa, region) never takes a place that an eligible job should have had."""
     seen, uniq = set(), []
     for j in jobs:
         k = (j["title"].lower().strip(), j["company"].lower().strip())
@@ -24,6 +26,8 @@ def rank(cv, jobs, query="", remote_only=False, min_score=0):
         uniq.append(j)
     if remote_only:
         uniq = [j for j in uniq if j["remote"]]
+    if keep:
+        uniq = [j for j in uniq if keep(j)]
     if not uniq:
         return []
     docs = [f"{j['title']} {j['title']} {' '.join(j['tags'])} {j['description'][:3000]}" for j in uniq]

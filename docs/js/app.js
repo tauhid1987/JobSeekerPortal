@@ -148,6 +148,7 @@ function showResults() {
         <div class="stat"><b>${d.expired}</b><span>past deadline</span></div>
         <div class="stat"><b>${applied}</b><span>applied from this list</span></div>
       </div>
+      ${d.notice ? `<p class="warn-box">${esc(d.notice)}</p>` : ''}
       ${d.tracked ? '' : '<p class="warn-box">This search could not be saved to your history. Tell the admin.</p>'}
       <p class="mute small">Skills read from your CV: ${esc(d.skills.join(', ') || 'none')}</p>
       <p class="mute small">${d.log.map(esc).join(' · ')}</p>

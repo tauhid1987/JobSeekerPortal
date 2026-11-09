@@ -16,7 +16,7 @@
       ".write": "auth != null && ((auth.uid === $uid && !data.exists()) || root.child('hosts').child(auth.uid).val() === true)",
       ".validate": "newData.hasChildren(['name', 'email', 'at'])",
       "name": { ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 60" },
-      "email": { ".validate": "newData.isString() && newData.val().length <= 120" },
+      "email": { ".validate": "newData.isString() && newData.val().length <= 120 && newData.val().matches(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*\\.[A-Za-z]{2,}$/)" },
       "at": { ".validate": "newData.val() === now" }
     }
   },

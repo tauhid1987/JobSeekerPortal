@@ -88,5 +88,12 @@ GitHub Pages can only show static pages, so JobMatch is split in two:
 4. In Firebase: Authentication > Settings > Authorized domains, add `tauhid1987.github.io`.
 
 Nothing about a search is kept on the server: the CV is deleted after reading and the Excel is sent straight back to the browser.
+### Approval emails and email checks
+
+- **Sign-up check:** the form rejects addresses that are not `name@domain.tld`, and suggests the right domain for common typos (`gmial.com` -> `gmail.com`). The database rules enforce the same format, so the check cannot be skipped. It cannot prove the mailbox exists.
+- **Approval email:** when an admin presses **Approve**, the search server emails the person a link to sign in. The address is read from the database, not from the browser. Admin > Members has **Resend email**.
+- **Turn it on:** add `SMTP_HOST`, `SMTP_USER` and `SMTP_PASSWORD` (and optionally `SMTP_PORT`, `MAIL_FROM`, `SITE_URL`) in the Render dashboard > Environment. For Gmail use `smtp.gmail.com`, port 587 and an App Password. Without them, approving still works and the admin page says "no email was sent: Email is not set up on the server".
+- **Publish the rules:** run `python tools/build_rules.py`, then publish `firebase/database.rules.json` (Firebase console > Realtime Database > Rules, or `firebase deploy --only database`).
+
 The free Render plan sleeps when idle, so the first search after a quiet period can take about a minute.
 `JOBMATCH_ORIGINS` (in `render.yaml`) lists the pages allowed to call the server.

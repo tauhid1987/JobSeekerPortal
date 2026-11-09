@@ -113,3 +113,13 @@ test('Quiz Arena rules are untouched', async () => {
   await assertFails(as('alice').ref('history').get());
   await assertSucceeds(as('admin1').ref('history').get());
 });
+
+test('an access request needs a valid email address', async () => {
+  for (const good of ['c@x.com', 'a.b+jobs@mail.example.com.bd']) {
+    await env.clearDatabase();
+    await assertSucceeds(as('carol').ref('jm/requests/carol').set({ name: 'Carol', email: good, at: TS }));
+  }
+  for (const bad of ['plain', 'a@b', 'a b@c.com', '@x.com', 'a@x.c', 'a@@x.com']) {
+    await assertFails(as('carol').ref('jm/requests/carol').set({ name: 'Carol', email: bad, at: TS }));
+  }
+});

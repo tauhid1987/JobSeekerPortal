@@ -1,7 +1,8 @@
 import {
   auth, onAuthStateChanged, signOut, dbRef, set, update, remove, onValue, serverTimestamp,
-  esc, when, STATUSES, statusLabel, csvDownload, showLogin,
+  esc, when, STATUSES, statusLabel, csvDownload, showLogin, idToken,
 } from './fb.js';
+import { API_BASE } from '../firebase-config.js';
 
 const app = document.getElementById('app');
 const nav = document.getElementById('nav');
@@ -69,7 +70,7 @@ function peopleView(pending, acts, appsAll) {
     ${members.map(([u, m]) => `<tr><td><a href="#" data-who="${esc(u)}">${esc(m.name)}</a></td><td>${esc(emailOf(u))}</td>
       <td><span class="pill ${m.active ? 'yes' : 'no'}">${m.active ? 'Active' : 'Blocked'}</span></td><td>${count(acts, u)}</td>
       <td>${appsAll.filter((x) => x.uid === u && x.status !== 'saved').length}</td>
-      <td><button class="${m.active ? 'ghost' : ''} small" data-toggle="${esc(u)}">${m.active ? 'Block' : 'Unblock'}</button></td></tr>`).join('')}</tbody></table></div>`
+      <td class="row"><button class="${m.active ? 'ghost' : ''} small" data-toggle="${esc(u)}">${m.active ? 'Block' : 'Unblock'}</button>${m.active ? `<button class="ghost small" data-resend="${esc(u)}">Resend email</button>` : ''}</td></tr>`).join('')}</tbody></table></div>`
     : '<p class="mute">No members yet. New people appear above after they request access.</p>'}</div>`;
 }
 
@@ -97,9 +98,45 @@ function appsView(list) {
     : '<p class="mute">Nothing matches.</p>'}</div>`;
 }
 
+// Asks the search server to email the person (it reads the address from the database, not from this page).
+async function notifyApproved(uid) {
+  try {
+    const r = await fetch(`${API_BASE}/api/notify-approved`, { method: 'POST', headers: { Authorization: `Bearer ${await idToken()}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ uid }) });
+    const d = await r.json().catch(() => ({}));
+    return r.ok ? { ok: true } : { ok: false, error: d.error || 'The server did not accept the request.' };
+  } catch (e) {
+    return { ok: false, error: 'Could not reach the server (it may be waking up). The person is approved already; use Resend email in the Members table.' };
+  }
+}
+
+let flashTimer;
+function flash(text, ok) {
+  let box = document.getElementById('flash');
+  if (!box) { box = document.createElement('p'); box.id = 'flash'; app.parentNode.insertBefore(box, app); }  // outside #app so a re-render does not wipe it
+  box.className = ok ? 'good-box' : 'warn-box';
+  box.textContent = text;
+  clearTimeout(flashTimer);
+  flashTimer = setTimeout(() => box.remove(), 12000);
+}
+
 function wire(acts, appsAll) {
   app.querySelectorAll('[data-approve]').forEach((b) => {
-    b.onclick = () => set(dbRef(`jm/members/${b.dataset.approve}`), { active: true, name: data.requests[b.dataset.approve].name, approvedAt: serverTimestamp() });
+    b.onclick = async () => {
+      const uid = b.dataset.approve;
+      b.disabled = true;
+      await set(dbRef(`jm/members/${uid}`), { active: true, name: data.requests[uid].name, approvedAt: serverTimestamp() });
+      const mail = await notifyApproved(uid);
+      flash(mail.ok ? `Approved. An email was sent to ${data.requests[uid].email}.` : `Approved, but no email was sent: ${mail.error}`, mail.ok);
+    };
+  });
+  app.querySelectorAll('[data-resend]').forEach((b) => {
+    b.onclick = async () => {
+      const uid = b.dataset.resend;
+      b.disabled = true;
+      const mail = await notifyApproved(uid);
+      flash(mail.ok ? `Email sent to ${emailOf(uid)}.` : `No email sent: ${mail.error}`, mail.ok);
+      b.disabled = false;
+    };
   });
   app.querySelectorAll('[data-decline]').forEach((b) => {
     b.onclick = () => confirm(`Decline ${data.requests[b.dataset.decline].name}?`) && remove(dbRef(`jm/requests/${b.dataset.decline}`));

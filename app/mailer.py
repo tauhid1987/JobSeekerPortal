@@ -7,6 +7,7 @@ For Gmail use smtp.gmail.com / 587 and an App Password (needs 2-step verificatio
 import os
 import re
 import smtplib
+import socket
 import ssl
 from email.message import EmailMessage
 from email.utils import formataddr
@@ -59,6 +60,26 @@ def build_approval(to_addr, name):
         "<p>Sign in with this email address. Then upload your CV, choose your country and get a ranked list of jobs you can apply for.</p>"
         '<p style="color:#666;font-size:12px">If you did not ask for access, you can ignore this email.</p>', subtype="html")
     return msg
+
+
+def explain(exc):
+    """A short, safe reason for the admin. Never contains the SMTP password."""
+    host = os.getenv("SMTP_HOST", "the SMTP host")
+    if isinstance(exc, smtplib.SMTPAuthenticationError):
+        return "The email service rejected the login. On Render check SMTP_USER (the Login shown on the Brevo SMTP page, not the key name) and SMTP_PASSWORD (the SMTP key)."
+    if isinstance(exc, (smtplib.SMTPSenderRefused, smtplib.SMTPRecipientsRefused, smtplib.SMTPDataError)):
+        return "The email service refused this message: " + _reply(exc) + " (check MAIL_FROM is a verified sender, and that the Brevo account is activated)."
+    if isinstance(exc, (smtplib.SMTPConnectError, smtplib.SMTPServerDisconnected, socket.gaierror, ConnectionError, TimeoutError)):
+        return f"Could not connect to {host}. Check SMTP_HOST and SMTP_PORT on Render."
+    return f"The email could not be sent ({type(exc).__name__}). See the Render logs for details."
+
+
+def _reply(exc):
+    text = getattr(exc, "smtp_error", None) or getattr(exc, "recipients", None) or str(exc)
+    if isinstance(text, bytes):
+        text = text.decode("utf-8", "replace")
+    code = getattr(exc, "smtp_code", "")
+    return re.sub(r"[\x00-\x1f\x7f]+", " ", f"{code} {text}").strip()[:200]
 
 
 def send(msg):

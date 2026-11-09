@@ -151,8 +151,9 @@ def notify_approved():
         mailer.send(mailer.build_approval(to, member.get("name") or req.get("name")))
     except mailer.MailNotConfigured as e:
         return jsonify(error=str(e), configured=False), 503
-    except Exception:
-        return jsonify(error="The email server refused the message. Check the SMTP settings on the host."), 502
+    except Exception as e:  # tell the admin the real reason (never includes the password) instead of one vague sentence
+        app.logger.warning("approval email failed: %s: %s", type(e).__name__, e)
+        return jsonify(error=mailer.explain(e)), 502
     _mailed[target] = time.time()
     return jsonify(sent=True)
 

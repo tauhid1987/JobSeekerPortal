@@ -175,6 +175,29 @@ class NotifyTests(unittest.TestCase):
             self.assertEqual(self.call().status_code, 200)
             self.assertEqual(self.call().status_code, 429)
 
+    def _fail_with(self, exc):
+        with mock.patch.dict(os.environ, self.SMTP), mock.patch("smtplib.SMTP") as smtp:
+            smtp.return_value.__enter__.return_value.login.side_effect = exc
+            return self.call()
+
+    def test_wrong_login_is_explained(self):
+        import smtplib
+        r = self._fail_with(smtplib.SMTPAuthenticationError(535, b"5.7.8 Authentication failed"))
+        self.assertEqual(r.status_code, 502)
+        msg = r.get_json()["error"]
+        self.assertIn("SMTP_USER", msg)
+        self.assertNotIn("pw", msg.replace("SMTP_PASSWORD", ""))  # the password never appears
+
+    def test_refused_sender_shows_server_reply(self):
+        import smtplib
+        r = self._fail_with(smtplib.SMTPSenderRefused(550, b"Sender not valid", "x@gmail.com"))
+        self.assertIn("550", r.get_json()["error"])
+        self.assertIn("Sender not valid", r.get_json()["error"])
+
+    def test_cannot_connect_is_explained(self):
+        r = self._fail_with(ConnectionRefusedError())
+        self.assertIn("Could not connect", r.get_json()["error"])
+
     def test_bad_uid(self):
         self.assertEqual(self.call("../x").status_code, 400)
 

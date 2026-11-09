@@ -198,6 +198,13 @@ class NotifyTests(unittest.TestCase):
         r = self._fail_with(ConnectionRefusedError())
         self.assertIn("Could not connect", r.get_json()["error"])
 
+    def test_stray_newline_in_settings_is_ignored(self):
+        env = dict(self.SMTP, SMTP_USER="\n" + self.SMTP["SMTP_USER"] + " ", SMTP_PASSWORD=" pw\n")
+        with mock.patch.dict(os.environ, env), mock.patch("smtplib.SMTP") as smtp:
+            r = self.call()
+        self.assertEqual(r.status_code, 200, r.get_json())
+        smtp.return_value.__enter__.return_value.login.assert_called_once_with("sender@example.com", "pw")
+
     def test_bad_uid(self):
         self.assertEqual(self.call("../x").status_code, 400)
 

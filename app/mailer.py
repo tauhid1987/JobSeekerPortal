@@ -25,8 +25,13 @@ def valid_email(addr):
     return isinstance(addr, str) and len(addr) <= 120 and EMAIL_RE.match(addr) is not None
 
 
+def _env(name, default=""):
+    """Setting from the environment with stray spaces / new lines (easy to paste by mistake) removed."""
+    return (os.getenv(name) or default).strip()
+
+
 def configured():
-    return bool(os.getenv("SMTP_HOST") and os.getenv("SMTP_USER") and os.getenv("SMTP_PASSWORD"))
+    return bool(_env("SMTP_HOST") and _env("SMTP_USER") and _env("SMTP_PASSWORD"))
 
 
 def _clean(text, limit):
@@ -41,8 +46,8 @@ def _esc(s):
 def build_approval(to_addr, name):
     if not valid_email(to_addr):
         raise ValueError("invalid email address")
-    site = os.getenv("SITE_URL", DEFAULT_SITE)
-    sender = os.getenv("MAIL_FROM") or os.getenv("SMTP_USER", "")
+    site = _env("SITE_URL", DEFAULT_SITE)
+    sender = _env("MAIL_FROM") or _env("SMTP_USER")
     who = _clean(name, 60) or "there"
     msg = EmailMessage()
     msg["Subject"] = "Your JobMatch access is approved"
@@ -64,7 +69,7 @@ def build_approval(to_addr, name):
 
 def explain(exc):
     """A short, safe reason for the admin. Never contains the SMTP password."""
-    host = os.getenv("SMTP_HOST", "the SMTP host")
+    host = _env("SMTP_HOST", "the SMTP host")
     if isinstance(exc, smtplib.SMTPAuthenticationError):
         return "The email service rejected the login. On Render check SMTP_USER (the Login shown on the Brevo SMTP page, not the key name) and SMTP_PASSWORD (the SMTP key)."
     if isinstance(exc, (smtplib.SMTPSenderRefused, smtplib.SMTPRecipientsRefused, smtplib.SMTPDataError)):
@@ -85,14 +90,14 @@ def _reply(exc):
 def send(msg):
     if not configured():
         raise MailNotConfigured("Email is not set up on the server (SMTP settings missing).")
-    host, port = os.environ["SMTP_HOST"], int(os.getenv("SMTP_PORT", "587"))
+    host, port = _env("SMTP_HOST"), int(_env("SMTP_PORT", "587"))
     ctx = ssl.create_default_context()
     if port == 465:
         with smtplib.SMTP_SSL(host, port, timeout=20, context=ctx) as s:
-            s.login(os.environ["SMTP_USER"], os.environ["SMTP_PASSWORD"])
+            s.login(_env("SMTP_USER"), _env("SMTP_PASSWORD"))
             s.send_message(msg)
     else:
         with smtplib.SMTP(host, port, timeout=20) as s:
             s.starttls(context=ctx)
-            s.login(os.environ["SMTP_USER"], os.environ["SMTP_PASSWORD"])
+            s.login(_env("SMTP_USER"), _env("SMTP_PASSWORD"))
             s.send_message(msg)

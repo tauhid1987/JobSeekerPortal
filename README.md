@@ -92,7 +92,8 @@ Nothing about a search is kept on the server: the CV is deleted after reading an
 
 - **Sign-up check:** the form rejects addresses that are not `name@domain.tld`, and suggests the right domain for common typos (`gmial.com` -> `gmail.com`). The database rules enforce the same format, so the check cannot be skipped. It cannot prove the mailbox exists.
 - **Approval email:** when an admin presses **Approve**, the search server emails the person a link to sign in. The address is read from the database, not from the browser. Admin > Members has **Resend email**.
-- **Turn it on:** add `SMTP_HOST`, `SMTP_USER` and `SMTP_PASSWORD` (and optionally `SMTP_PORT`, `MAIL_FROM`, `SITE_URL`) in the Render dashboard > Environment. For Gmail use `smtp.gmail.com`, port 587 and an App Password. Without them, approving still works and the admin page says "no email was sent: Email is not set up on the server".
+- **Turn it on (free Render):** Render's free plan blocks the SMTP ports, so use Brevo's web API. In Brevo create an API key (SMTP & API > API Keys), verify a sender (Senders), then set `BREVO_API_KEY` and `MAIL_FROM` (the verified sender) in the Render dashboard > Environment.
+- **Or by SMTP** (paid Render plan, or your own PC): add `SMTP_HOST`, `SMTP_USER` and `SMTP_PASSWORD` (and optionally `SMTP_PORT`, `MAIL_FROM`, `SITE_URL`) in the Render dashboard > Environment. For Gmail use `smtp.gmail.com`, port 587 and an App Password. Without them, approving still works and the admin page says "no email was sent: Email is not set up on the server".
 - **Publish the rules:** run `python tools/build_rules.py`, then publish `firebase/database.rules.json` (Firebase console > Realtime Database > Rules, or `firebase deploy --only database`).
 
 The free Render plan sleeps when idle, so the first search after a quiet period can take about a minute.

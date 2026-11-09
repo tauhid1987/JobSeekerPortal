@@ -165,6 +165,7 @@ class NotifyTests(unittest.TestCase):
 
     def test_not_configured_says_so(self):
         env = {k: "" for k in self.SMTP}
+        env["BREVO_API_KEY"] = ""
         with mock.patch.dict(os.environ, env):
             r = self.call()
         self.assertEqual(r.status_code, 503)
@@ -204,6 +205,39 @@ class NotifyTests(unittest.TestCase):
             r = self.call()
         self.assertEqual(r.status_code, 200, r.get_json())
         smtp.return_value.__enter__.return_value.login.assert_called_once_with("sender@example.com", "pw")
+
+    API = {"BREVO_API_KEY": "key-123", "MAIL_FROM": "sender@example.com", "SMTP_HOST": "", "SMTP_USER": "", "SMTP_PASSWORD": ""}
+
+    def _api(self, status=201, text="{}", exc=None):
+        resp = mock.Mock(status_code=status, text=text)
+        with mock.patch.dict(os.environ, self.API), mock.patch("app.mailer.requests.post", side_effect=exc, return_value=resp) as post:
+            return self.call(), post
+
+    def test_brevo_api_is_used_when_the_key_is_set(self):
+        r, post = self._api()
+        self.assertEqual(r.status_code, 200, r.get_json())
+        args, kw = post.call_args
+        self.assertEqual(args[0], "https://api.brevo.com/v3/smtp/email")
+        self.assertEqual(kw["headers"]["api-key"], "key-123")
+        self.assertEqual(kw["json"]["to"], [{"email": "rina@example.com"}])
+        self.assertEqual(kw["json"]["sender"]["email"], "sender@example.com")
+        self.assertIn("Confirm and open", kw["json"]["htmlContent"])
+
+    def test_brevo_api_bad_key_is_explained_without_leaking_it(self):
+        r, _ = self._api(status=401, text='{"message":"Key not found"}')
+        self.assertEqual(r.status_code, 502)
+        msg = r.get_json()["error"]
+        self.assertIn("BREVO_API_KEY", msg)
+        self.assertNotIn("key-123", msg)
+
+    def test_brevo_api_refusal_shows_the_reason(self):
+        r, _ = self._api(status=400, text='{"message":"Sender not valid"}')
+        self.assertIn("Sender not valid", r.get_json()["error"])
+
+    def test_brevo_api_unreachable(self):
+        import requests
+        r, _ = self._api(exc=requests.exceptions.ConnectionError())
+        self.assertIn("Could not reach", r.get_json()["error"])
 
     def test_bad_uid(self):
         self.assertEqual(self.call("../x").status_code, 400)

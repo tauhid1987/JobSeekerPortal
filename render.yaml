@@ -14,7 +14,10 @@ services:
         value: https://tauhid1987.github.io
       - key: JOOBLE_KEY        # optional: your Jooble API key (adds Bangladesh jobs); set it in the Render dashboard
         sync: false
-      # Approval emails (optional). Put the values in the Render dashboard, never in this file.
+      # Approval emails. Free Render servers block SMTP ports, so use Brevo's web API (BREVO_API_KEY + MAIL_FROM).
+      - key: BREVO_API_KEY
+        sync: false
+      # Approval emails by SMTP (only where the SMTP ports are open, e.g. a paid plan). Put the values in the Render dashboard, never in this file.
       # Gmail: smtp.gmail.com, port 587, and an App Password (Google account > Security > 2-Step Verification > App passwords).
       - key: SMTP_HOST
         sync: false
